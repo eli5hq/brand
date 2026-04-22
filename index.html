@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ELI5 HQ — Brand Style Guide v1.0</title>
+    <meta name="description" content="Internal brand reference for ELI5 HQ. Colors, typography, voice, editorial formula, and pre-publish checklist." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "hazard-pink": "#FF2E63",
+              "off-black": "#0E0E12",
+              "paper-cream": "#F5F1E8",
+              "lab-lime": "#C6F24E",
+              "plasma-violet": "#7A3BFF",
+              "signal-orange": "#FF8A1F",
+              "beaker-blue": "#2EC4FF",
+              "moss-green": "#4F8A3C",
+              "smoke-900": "#1A1A20",
+              "smoke-500": "#6B6B78",
+              "smoke-200": "#C9C6BD",
+              "chalk-white": "#FAFAF5",
+            },
+            fontFamily: {
+              display: ['"Space Grotesk"', "system-ui", "sans-serif"],
+              body: ['"Inter"', "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* Noise overlay — subtle paper-grain feel */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 1;
+        opacity: 0.07;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+      }
+
+      /* Sticker-style card — slight tilt + off-register shadow */
+      .sticker {
+        position: relative;
+        transform: rotate(-0.75deg);
+      }
+      .sticker::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background: #7a3bff; /* plasma-violet default */
+        transform: translate(4px, 4px);
+      }
+      .sticker--tilt-pos {
+        transform: rotate(1.25deg);
+      }
+      .sticker--shadow-pink::after {
+        background: #ff2e63;
+      }
+      .sticker--shadow-lime::after {
+        background: #c6f24e;
+      }
+
+      /* Rotated headings for zine energy */
+      .heading-wonk {
+        display: inline-block;
+        transform: rotate(-1.25deg);
+      }
+
+      /* Zigzag divider (inline SVG background) */
+      .zigzag {
+        height: 12px;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='12' viewBox='0 0 40 12'><path d='M0 6 L10 1 L20 11 L30 1 L40 6' fill='none' stroke='%23FF2E63' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+        background-repeat: repeat-x;
+        background-position: center;
+      }
+
+      /* Offset color fill — one rule, applied to elements that want the
+         "sticker is slightly off the outline" look */
+      .offset-fill {
+        position: relative;
+      }
+      .offset-fill > span {
+        position: relative;
+        z-index: 1;
+      }
+      .offset-fill::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: inherit;
+        transform: translate(3px, 3px);
+        z-index: 0;
+      }
+
+      /* Ensure content sits above the noise overlay */
+      main,
+      header,
+      footer {
+        position: relative;
+        z-index: 2;
+      }
+    </style>
+  </head>
+
+  <body class="bg-off-black font-body text-chalk-white antialiased">
+    <header id="hero" class="px-6 py-20 md:px-12 md:py-28">
+      <!-- Task 2 fills this -->
+    </header>
+
+    <main class="px-6 md:px-12">
+      <section id="foundation" class="py-16"><!-- Task 2 --></section>
+      <div class="zigzag my-8" aria-hidden="true"></div>
+
+      <section id="palette" class="py-16"><!-- Task 3 --></section>
+      <div class="zigzag my-8" aria-hidden="true"></div>
+
+      <section id="typography" class="py-16"><!-- Task 4 --></section>
+      <div class="zigzag my-8" aria-hidden="true"></div>
+
+      <section id="logo" class="py-16"><!-- Task 5 --></section>
+      <div class="zigzag my-8" aria-hidden="true"></div>
+
+      <section id="hooks" class="py-16"><!-- Task 6 --></section>
+      <div class="zigzag my-8" aria-hidden="true"></div>
+
+      <section id="do-dont" class="py-16"><!-- Task 7 --></section>
+      <div class="zigzag my-8" aria-hidden="true"></div>
+
+      <section id="checklist" class="py-16"><!-- Task 8 --></section>
+      <div class="zigzag my-8" aria-hidden="true"></div>
+
+      <section id="four-beat" class="py-16"><!-- Task 9 --></section>
+    </main>
+
+    <footer class="mt-16 border-t border-smoke-900 px-6 py-10 text-smoke-500 md:px-12">
+      <!-- Task 10 fills this -->
+      <p class="font-body text-sm">scaffolding — sections wired in subsequent tasks.</p>
+    </footer>
+  </body>
+</html>

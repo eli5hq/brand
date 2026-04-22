@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ELI5 HQ — Brand Style Guide v1.0</title>
+    <meta name="description" content="Internal brand reference for ELI5 HQ. Colors, typography, voice, editorial formula, and pre-publish checklist." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "hazard-pink": "#FF2E63",
+              "off-black": "#0E0E12",
+              "paper-cream": "#F5F1E8",
+              "lab-lime": "#C6F24E",
+              "plasma-violet": "#7A3BFF",
+              "signal-orange": "#FF8A1F",
+              "beaker-blue": "#2EC4FF",
+              "moss-green": "#4F8A3C",
+              "smoke-900": "#1A1A20",
+              "smoke-500": "#6B6B78",
+              "smoke-200": "#C9C6BD",
+              "chalk-white": "#FAFAF5",
+            },
+            fontFamily: {
+              display: ['"Space Grotesk"', "system-ui", "sans-serif"],
+              body: ['"Inter"', "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      /* Noise overlay — subtle paper-grain feel */
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 1;
+        opacity: 0.07;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+      }
+
+      /* Sticker-style card — slight tilt + off-register shadow */
+      .sticker {
+        position: relative;
+        transform: rotate(-0.75deg);
+      }
+      .sticker::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background: #7a3bff; /* plasma-violet default */
+        transform: translate(4px, 4px);
+      }
+      .sticker--tilt-pos {
+        transform: rotate(1.25deg);
+      }
+      .sticker--shadow-pink::after {
+        background: #ff2e63;
+      }
+      .sticker--shadow-lime::after {
+        background: #c6f24e;
+      }
+
+      /* Rotated headings for zine energy */
+      .heading-wonk {
+        display: inline-block;
+        transform: rotate(-1.25deg);
+      }
+
+      /* Zigzag divider (inline SVG background) */
+      .zigzag {
+        height: 12px;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='12' viewBox='0 0 40 12'><path d='M0 6 L10 1 L20 11 L30 1 L40 6' fill='none' stroke='%23FF2E63' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+        background-repeat: repeat-x;
+        background-position: center;
+      }
+
+      /* Offset color fill — one rule, applied to elements that want the
+         "sticker is slightly off the outline" look */
+      /* Ensure content sits above the noise overlay */
+      main,
+      header,
+      footer {
+        position: relative;
+        z-index: 2;
+      }
+    </style>
+  </head>
+
+  <body class="bg-off-black font-body text-chalk-white antialiased">
+    <header id="hero" class="px-6 py-20 md:px-12 md:py-28">
+      <div class="mx-auto max-w-6xl">
+  <div class="mb-8 inline-block">
+    <span class="sticker sticker--tilt-pos sticker--shadow-lime inline-block bg-hazard-pink px-3 py-1 font-display text-xs font-bold uppercase tracking-wider text-off-black">
+      v1.0 · Brand Guide
+    </span>
+  </div>
+  <h1 class="font-display font-bold leading-[0.85] tracking-tight">
+    <span class="block text-chalk-white" style="font-size: clamp(64px, 14vw, 220px);">
+      ELI<span class="text-hazard-pink">5</span>
+    </span>
+    <span class="mt-2 block text-smoke-500" style="font-size: clamp(28px, 5vw, 72px);">
+      HQ
+    </span>
+  </h1>
+  <p class="mt-10 max-w-2xl font-body text-lg text-smoke-200 md:text-xl">
+    STEM explained like you're 5. The science is still for grown-ups.
+  </p>
+</div>
+    </header>
+
+    <main class="px-6 md:px-12">
+      <section id="foundation" class="py-16"><div class="mx-auto max-w-6xl">
+  <div class="mb-6 inline-block">
+    <h2 class="heading-wonk font-display text-xs font-bold uppercase tracking-[0.2em] text-hazard-pink">
+      Foundation
+    </h2>
+  </div>
+  <div class="grid gap-8 md:grid-cols-5">
+    <blockquote class="md:col-span-3 border-l-4 border-hazard-pink pl-6 font-display text-2xl font-medium leading-snug text-chalk-white md:text-3xl">
+      For chronically online 16–24-year-olds curious about how the world works,
+      <span class="text-hazard-pink">ELI5 HQ</span> is the short-form animated
+      STEM channel that explains real science like you're five — and then
+      actually teaches it.
+    </blockquote>
+    <aside class="md:col-span-2">
+      <div class="sticker sticker--shadow-pink inline-block bg-lab-lime px-5 py-4 font-display text-off-black">
+        <p class="text-xs font-bold uppercase tracking-widest">The engine</p>
+        <p class="mt-1 text-2xl font-bold leading-tight">
+          Surface: dumb.<br />Core: real.
+        </p>
+      </div>
+    </aside>
+  </div>
+</div></section>
+      <div class="zigzag my-8" aria-hidden="true"></div>
+
+      <section id="palette" class="py-16"><div class="mx-auto max-w-6xl">
+  <div class="mb-8 flex items-baseline gap-4">
+    <h2 class="heading-wonk font-display text-4xl font-bold text-chalk-white md:text-5xl">
+      Palette
+    </h2>
+    <span class="font-display text-xs font-bold uppercase tracking-[0.2em] text-lab-lime">
+      saturated · slightly acidic · sticker-pack
+    </span>
+  </div>
+
+  <div class="mb-10">
+    <h3 class="mb-4 font-display text-sm font-bold uppercase tracking-widest text-smoke-500">
+      Primary
+    </h3>
+    <div class="grid gap-4 md:grid-cols-3">
+      <!-- Hazard Pink -->
+      <div class="border border-smoke-900 bg-smoke-900 p-6">
+        <div class="mb-4 h-24 bg-hazard-pink"></div>
+        <p class="font-display text-lg font-bold text-chalk-white">Hazard Pink</p>
+        <p class="font-mono text-sm text-smoke-200">#FF2E63</p>
+        <p class="mt-3 font-body text-sm text-smoke-200">
+          Brand primary. Logo, key hooks, accent across every video.
+          <strong class="text-hazard-pink">Not optional.</strong>
+        </p>
+        <dl class="mt-4 space-y-1 font-mono text-xs">
+          <div class="flex justify-between"><dt class="text-smoke-500">On Off-Black</dt><dd class="text-lab-lime">AA · 5.1:1</dd></div>
+          <div class="flex justify-between"><dt class="text-smoke-500">Chalk on Pink (body)</dt><dd class="text-hazard-pink">FAIL · 3.3:1</dd></div>
+        </dl>
+      </div>
+
+      <!-- Off-Black -->
+      <div class="border border-smoke-900 bg-smoke-900 p-6">
+        <div class="mb-4 h-24 bg-off-black border border-smoke-500"></div>
+        <p class="font-display text-lg font-bold text-chalk-white">Off-Black</p>
+        <p class="font-mono text-sm text-smoke-200">#0E0E12</p>
+        <p class="mt-3 font-body text-sm text-smoke-200">
+          Dominant background. Softer than pure #000 — feels designed.
+        </p>
+        <dl class="mt-4 space-y-1 font-mono text-xs">
+          <div class="flex justify-between"><dt class="text-smoke-500">Chalk on Off-Black</dt><dd class="text-lab-lime">AA · 17:1</dd></div>
+        </dl>
+      </div>
+
+      <!-- Paper Cream -->
+      <div class="border border-smoke-900 bg-smoke-900 p-6">
+        <div class="mb-4 h-24 bg-paper-cream"></div>
+        <p class="font-display text-lg font-bold text-chalk-white">Paper Cream</p>
+        <p class="font-mono text-sm text-smoke-200">#F5F1E8</p>
+        <p class="mt-3 font-body text-sm text-smoke-200">
+          Daylight-video background. Warm, aged, sticker-sheet energy.
+        </p>
+        <dl class="mt-4 space-y-1 font-mono text-xs">
+          <div class="flex justify-between"><dt class="text-smoke-500">Off-Black on Cream</dt><dd class="text-lab-lime">AA · 13:1</dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-10">
+    <h3 class="mb-4 font-display text-sm font-bold uppercase tracking-widest text-smoke-500">
+      Secondary · Sticker Pack
+    </h3>
+    <div class="grid gap-4 md:grid-cols-5">
+      <div class="border border-smoke-900 bg-smoke-900 p-4">
+        <div class="mb-3 h-16 bg-lab-lime"></div>
+        <p class="font-display text-sm font-bold text-chalk-white">Lab Lime</p>
+        <p class="font-mono text-xs text-smoke-200">#C6F24E</p>
+        <p class="mt-2 font-body text-xs text-smoke-500">Math · tech</p>
+      </div>
+      <div class="border border-smoke-900 bg-smoke-900 p-4">
+        <div class="mb-3 h-16 bg-plasma-violet"></div>
+        <p class="font-display text-sm font-bold text-chalk-white">Plasma Violet</p>
+        <p class="font-mono text-xs text-smoke-200">#7A3BFF</p>
+        <p class="mt-2 font-body text-xs text-smoke-500">Space · physics</p>
+      </div>
+      <div class="border border-smoke-900 bg-smoke-900 p-4">
+        <div class="mb-3 h-16 bg-signal-orange"></div>
+        <p class="font-display text-sm font-bold text-chalk-white">Signal Orange</p>
+        <p class="font-mono text-xs text-smoke-200">#FF8A1F</p>
+        <p class="mt-2 font-body text-xs text-smoke-500">Biology · everyday</p>
+      </div>
+      <div class="border border-smoke-900 bg-smoke-900 p-4">
+        <div class="mb-3 h-16 bg-beaker-blue"></div>
+        <p class="font-display text-sm font-bold text-chalk-white">Beaker Blue</p>
+        <p class="font-mono text-xs text-smoke-200">#2EC4FF</p>
+        <p class="mt-2 font-body text-xs text-smoke-500">Chemistry · tech</p>
+      </div>
+      <div class="border border-smoke-900 bg-smoke-900 p-4">
+        <div class="mb-3 h-16 bg-moss-green"></div>
+        <p class="font-display text-sm font-bold text-chalk-white">Moss Green</p>
+        <p class="font-mono text-xs text-smoke-200">#4F8A3C</p>
+        <p class="mt-2 font-body text-xs text-smoke-500">Nature</p>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <h3 class="mb-4 font-display text-sm font-bold uppercase tracking-widest text-smoke-500">
+      Neutrals
+    </h3>
+    <div class="grid gap-4 md:grid-cols-4">
+      <div class="border border-smoke-900 bg-smoke-900 p-4">
+        <div class="mb-3 h-16 bg-smoke-900 border border-smoke-500"></div>
+        <p class="font-display text-sm font-bold text-chalk-white">Smoke 900</p>
+        <p class="font-mono text-xs text-smoke-200">#1A1A20</p>
+      </div>
+      <div class="border border-smoke-900 bg-smoke-900 p-4">
+        <div class="mb-3 h-16 bg-smoke-500"></div>
+        <p class="font-display text-sm font-bold text-chalk-white">Smoke 500</p>
+        <p class="font-mono text-xs text-smoke-200">#6B6B78</p>
+      </div>
+      <div class="border border-smoke-900 bg-smoke-900 p-4">
+        <div class="mb-3 h-16 bg-smoke-200"></div>
+        <p class="font-display text-sm font-bold text-chalk-white">Smoke 200</p>
+        <p class="font-mono text-xs text-smoke-200">#C9C6BD</p>
+      </div>
+      <div class="border border-smoke-900 bg-smoke-900 p-4">
+        <div class="mb-3 h-16 bg-chalk-white"></div>
+        <p class="font-display text-sm font-bold text-chalk-white">Chalk White</p>
+        <p class="font-mono text-xs text-smoke-200">#FAFAF5</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-10 border-l-4 border-lab-lime bg-smoke-900 p-5">
+    <p class="font-display text-sm font-bold uppercase tracking-widest text-lab-lime">
+      60 / 30 / 10 rule
+    </p>
+    <p class="mt-2 font-body text-base text-smoke-200">
+      ~60% Off-Black or Paper Cream (ground) · ~30% one secondary (topic
+      color) · ~10% Hazard Pink (brand signature). Never pair Hazard Pink
+      with Signal Orange — they fight.
+    </p>
+  </div>
+</div></section>
+      <div class="zigzag my-8" aria-hidden="true"></div>
+
+      <section id="typography" class="py-16"><div class="mx-auto max-w-6xl">
+  <div class="mb-8 flex items-baseline gap-4">
+    <h2 class="heading-wonk font-display text-4xl font-bold text-chalk-white md:text-5xl">
+      Typography
+    </h2>
+    <span class="font-display text-xs font-bold uppercase tracking-[0.2em] text-beaker-blue">
+      two fonts · that's the cap
+    </span>
+  </div>
+
+  <div class="grid gap-8 md:grid-cols-2">
+    <!-- Display: Space Grotesk -->
+    <div class="border border-smoke-900 bg-smoke-900 p-8">
+      <p class="font-display text-xs font-bold uppercase tracking-widest text-hazard-pink">Display</p>
+      <p class="mt-1 font-display text-3xl font-bold text-chalk-white">Space Grotesk</p>
+      <p class="mt-1 font-body text-sm text-smoke-200">
+        Hooks · thumbnails · on-screen key words · stingers. Never below 24pt on video. Never italicized.
+      </p>
+      <div class="mt-6 space-y-3">
+        <p class="font-display text-5xl font-bold text-chalk-white leading-tight">Aa Bb 5<span class="text-hazard-pink">2</span></p>
+        <p class="font-display text-base font-medium text-smoke-200">500 Medium — the support weight</p>
+        <p class="font-display text-base font-bold text-chalk-white">700 Bold — the default display weight</p>
+      </div>
+      <p class="mt-6 font-mono text-xs text-smoke-500">SIL OFL · Google Fonts · fallback: Archivo Black / Bagel Fat One</p>
+    </div>
+
+    <!-- Body: Inter -->
+    <div class="border border-smoke-900 bg-smoke-900 p-8">
+      <p class="font-display text-xs font-bold uppercase tracking-widest text-hazard-pink">Body</p>
+      <p class="mt-1 font-display text-3xl font-bold text-chalk-white">Inter</p>
+      <p class="mt-1 font-body text-sm text-smoke-200">
+        Burned-in captions · body text · bio copy · anything long-form. 600 for captions; 500 support; 400 UI/legal only.
+      </p>
+      <div class="mt-6 space-y-3">
+        <p class="font-body text-5xl font-semibold text-chalk-white leading-tight">Aa Bb 5<span class="text-hazard-pink">2</span></p>
+        <p class="font-body text-base font-normal text-smoke-200">400 Regular — UI/legal only</p>
+        <p class="font-body text-base font-medium text-smoke-200">500 Medium — supporting lines</p>
+        <p class="font-body text-base font-semibold text-chalk-white">600 Semibold — caption default</p>
+      </div>
+      <p class="mt-6 font-mono text-xs text-smoke-500">SIL OFL · Google Fonts · fallback: Manrope / DM Sans</p>
+    </div>
+  </div>
+
+  <div class="mt-10 border border-smoke-900 bg-paper-cream p-8 text-off-black">
+    <p class="font-display text-xs font-bold uppercase tracking-widest text-hazard-pink">In use</p>
+    <p class="mt-1 font-display text-xl font-bold">Hook → translation → caption, applied</p>
+
+    <div class="mt-6 space-y-4">
+      <p class="font-display text-3xl font-bold leading-tight md:text-4xl">
+        why does your knuckle crack?
+      </p>
+      <p class="font-display text-2xl font-bold leading-tight">
+        <span class="bg-hazard-pink px-1 text-chalk-white">cavitation</span>
+        <span class="text-smoke-500">— a little gas bubble being born</span>
+      </p>
+      <p class="font-body text-base font-semibold">
+        your knuckle is a little bag of joint juice. pressure drops, a
+        bubble pops into existence. that pop? the bubble's birthday.
+      </p>
+    </div>
+  </div>
+</div></section>
+      <div class="zigzag my-8" aria-hidden="true"></div>
+
+      <section id="logo" class="py-16"><div class="mx-auto max-w-6xl">
+  <div class="mb-8 flex items-baseline gap-4">
+    <h2 class="heading-wonk font-display text-4xl font-bold text-chalk-white md:text-5xl">
+      Logo — concept
+    </h2>
+    <span class="font-display text-xs font-bold uppercase tracking-[0.2em] text-plasma-violet">
+      wordmark-led · the 5 does the work
+    </span>
+  </div>
+
+  <div class="grid gap-8 md:grid-cols-5">
+    <!-- Wordmark mock -->
+    <div class="md:col-span-3 border border-smoke-900 bg-smoke-900 p-10">
+      <p class="font-display text-xs font-bold uppercase tracking-widest text-smoke-500">Primary lockup</p>
+      <div class="mt-6 flex items-start gap-3">
+        <span class="font-display text-[128px] font-bold leading-none text-chalk-white">ELI</span>
+        <span class="sticker sticker--shadow-pink font-display text-[128px] font-bold leading-none text-hazard-pink">5</span>
+        <span class="mt-3 inline-block bg-chalk-white px-2 py-1 font-display text-xs font-bold uppercase tracking-widest text-off-black">
+          HQ
+        </span>
+      </div>
+      <p class="mt-8 font-body text-sm text-smoke-200">
+        The <span class="text-hazard-pink font-semibold">5</span> is the
+        load-bearing personality character — sticker-treated, slightly
+        off-register, a little hand-touched. <span class="uppercase tracking-widest text-xs font-bold bg-chalk-white px-1.5 py-0.5 text-off-black">HQ</span>
+        is a minor stamp, never a co-star.
+      </p>
+    </div>
+
+    <!-- Monogram / avatar -->
+    <div class="md:col-span-2 border border-smoke-900 bg-smoke-900 p-10 flex flex-col items-center justify-center text-center">
+      <p class="font-display text-xs font-bold uppercase tracking-widest text-smoke-500 self-start">Monogram · Avatar</p>
+      <div class="my-6 flex h-48 w-48 items-center justify-center bg-hazard-pink">
+        <span class="font-display text-[120px] font-bold leading-none text-off-black">5</span>
+      </div>
+      <p class="font-body text-sm text-smoke-200">
+        Off-Black 5 on a Hazard Pink tile. Works at 40×40px in the profile
+        rail. Never invert to Paper Cream — loses punch.
+      </p>
+    </div>
+  </div>
+
+  <div class="mt-8 grid gap-4 md:grid-cols-2">
+    <ul class="border border-lab-lime bg-smoke-900 p-6 font-body text-sm text-smoke-200 space-y-2">
+      <li class="font-display font-bold text-lab-lime uppercase tracking-widest text-xs">Do</li>
+      <li>• Flat only — no gradients in the lockup.</li>
+      <li>• 5 works alone as the avatar.</li>
+      <li>• Single-color knockout viable (white on color, color on off-black).</li>
+      <li>• Min wordmark width 120px digital.</li>
+    </ul>
+    <ul class="border border-hazard-pink bg-smoke-900 p-6 font-body text-sm text-smoke-200 space-y-2">
+      <li class="font-display font-bold text-hazard-pink uppercase tracking-widest text-xs">Don't</li>
+      <li>• Science-cliché icons (atoms, beakers, gears, lightbulbs).</li>
+      <li>• Gradients, drop-shadows, or 3D in the primary lockup.</li>
+      <li>• Cutesy. We're confident, not precious.</li>
+      <li>• HQ oversized — it's a stamp, not a co-star.</li>
+    </ul>
+  </div>
+</div></section>
+      <div class="zigzag my-8" aria-hidden="true"></div>
+
+      <section id="hooks" class="py-16"><div class="mx-auto max-w-6xl">
+  <div class="mb-8 flex items-baseline gap-4">
+    <h2 class="heading-wonk font-display text-4xl font-bold text-chalk-white md:text-5xl">
+      Hook library
+    </h2>
+    <span class="font-display text-xs font-bold uppercase tracking-[0.2em] text-signal-orange">
+      first 2 seconds · fill in the blank
+    </span>
+  </div>
+
+  <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+    <!-- 1 -->
+    <article class="border border-smoke-900 bg-smoke-900 p-5">
+      <p class="font-display text-xs font-bold uppercase tracking-widest text-hazard-pink">01 · Dumb-question</p>
+      <p class="mt-2 font-display text-lg font-bold text-chalk-white">why does [thing] [do thing]?</p>
+      <p class="mt-3 font-body text-sm italic text-smoke-200">"why does the sky go orange at sunset?"</p>
+    </article>
+    <!-- 2 -->
+    <article class="border border-smoke-900 bg-smoke-900 p-5">
+      <p class="font-display text-xs font-bold uppercase tracking-widest text-hazard-pink">02 · Five-year-old framing</p>
+      <p class="mt-2 font-display text-lg font-bold text-chalk-white">okay imagine you're 5 and you asked [dumb question].</p>
+      <p class="mt-3 font-body text-sm italic text-smoke-200">"imagine you're 5 and you asked why ice floats."</p>
+    </article>
+    <!-- 3 -->
+    <article class="border border-smoke-900 bg-smoke-900 p-5">
+      <p class="font-display text-xs font-bold uppercase tracking-widest text-hazard-pink">03 · Wait-what</p>
+      <p class="mt-2 font-display text-lg font-bold text-chalk-white">wait. [counterintuitive fact]. actually wait.</p>
+      <p class="mt-3 font-body text-sm italic text-smoke-200">"wait. you can't touch anything. actually wait."</p>
+    </article>
+    <!-- 4 -->
+    <article class="border border-smoke-900 bg-smoke-900 p-5">
+      <p class="font-display text-xs font-bold uppercase tracking-widest text-hazard-pink">04 · Numeric gut-punch</p>
+      <p class="mt-2 font-display text-lg font-bold text-chalk-white">there are more [x] than [y]. let that cook.</p>
+      <p class="mt-3 font-body text-sm italic text-smoke-200">"more stars than grains of sand. let that cook."</p>
+    </article>
+    <!-- 5 -->
+    <article class="border border-smoke-900 bg-smoke-900 p-5">
+      <p class="font-display text-xs font-bold uppercase tracking-widest text-hazard-pink">05 · Accusation</p>
+      <p class="mt-2 font-display text-lg font-bold text-chalk-white">[field of science] is lying to you and here's how.</p>
+      <p class="mt-3 font-body text-sm italic text-smoke-200">"chemistry is lying to you and here's how."</p>
+    </article>
+    <!-- 6 -->
+    <article class="border border-smoke-900 bg-smoke-900 p-5">
+      <p class="font-display text-xs font-bold uppercase tracking-widest text-hazard-pink">06 · Cursed fact drop</p>
+      <p class="mt-2 font-display text-lg font-bold text-chalk-white">[insane true thing]. that's real. right now.</p>
+      <p class="mt-3 font-body text-sm italic text-smoke-200">"there's a cloud of alcohol in space. that's real."</p>
+    </article>
+    <!-- 7 -->
+    <article class="border border-smoke-900 bg-smoke-900 p-5">
+      <p class="font-display text-xs font-bold uppercase tracking-widest text-hazard-pink">07 · Everyday-to-cosmic</p>
+      <p class="mt-2 font-display text-lg font-bold text-chalk-white">you do [normal thing]. physics does [insane thing] so that works.</p>
+      <p class="mt-3 font-body text-sm italic text-smoke-200">"you open the fridge. physics does interpretive dance so that works."</p>
+    </article>
+    <!-- 8 -->
+    <article class="border border-smoke-900 bg-smoke-900 p-5">
+      <p class="font-display text-xs font-bold uppercase tracking-widest text-hazard-pink">08 · Roast setup</p>
+      <p class="mt-2 font-display text-lg font-bold text-chalk-white">[animal] is the [unhinged superlative] and nobody's talking about it.</p>
+      <p class="mt-3 font-body text-sm italic text-smoke-200">"the mantis shrimp is the worst roommate in the ocean."</p>
+    </article>
+    <!-- 9 -->
+    <article class="border border-smoke-900 bg-smoke-900 p-5">
+      <p class="font-display text-xs font-bold uppercase tracking-widest text-hazard-pink">09 · Wrong-on-purpose</p>
+      <p class="mt-2 font-display text-lg font-bold text-chalk-white">[confidently wrong]. ok not really. here's the real answer.</p>
+      <p class="mt-3 font-body text-sm italic text-smoke-200">"the sun is on fire. ok not really. it's worse."</p>
+    </article>
+    <!-- 10 -->
+    <article class="border border-smoke-900 bg-smoke-900 p-5">
+      <p class="font-display text-xs font-bold uppercase tracking-widest text-hazard-pink">10 · Class-failed</p>
+      <p class="mt-2 font-display text-lg font-bold text-chalk-white">they told you [school version]. they lied for convenience.</p>
+      <p class="mt-3 font-body text-sm italic text-smoke-200">"they told you atoms are balls with dots. they lied."</p>
+    </article>
+    <!-- 11 -->
+    <article class="border border-smoke-900 bg-smoke-900 p-5">
+      <p class="font-display text-xs font-bold uppercase tracking-widest text-hazard-pink">11 · Receipts</p>
+      <p class="mt-2 font-display text-lg font-bold text-chalk-white">i will now prove [absurd claim] in under 30 seconds.</p>
+      <p class="mt-3 font-body text-sm italic text-smoke-200">"i will now prove you're mostly empty space."</p>
+    </article>
+    <!-- 12 -->
+    <article class="border border-smoke-900 bg-smoke-900 p-5">
+      <p class="font-display text-xs font-bold uppercase tracking-widest text-hazard-pink">12 · Name-the-villain</p>
+      <p class="mt-2 font-display text-lg font-bold text-chalk-white">[concept], explained. it's the reason [annoying everyday thing].</p>
+      <p class="mt-3 font-body text-sm italic text-smoke-200">"entropy, explained. it's the reason your room is messy."</p>
+    </article>
+  </div>
+</div></section>
+      <div class="zigzag my-8" aria-hidden="true"></div>
+
+      <section id="do-dont" class="py-16"><div class="mx-auto max-w-6xl">
+  <div class="mb-8 flex items-baseline gap-4">
+    <h2 class="heading-wonk font-display text-4xl font-bold text-chalk-white md:text-5xl">
+      Do · Don't
+    </h2>
+    <span class="font-display text-xs font-bold uppercase tracking-[0.2em] text-lab-lime">
+      voice applied · side by side
+    </span>
+  </div>
+
+  <div class="grid gap-4 md:grid-cols-2">
+    <!-- DO column -->
+    <div class="border-l-4 border-lab-lime bg-smoke-900 p-6 space-y-5">
+      <p class="font-display text-lg font-bold uppercase tracking-widest text-lab-lime">Do</p>
+      <p class="font-body text-base text-chalk-white">"why does your knuckle crack?"</p>
+      <p class="font-body text-base text-chalk-white">"there are more shuffles than atoms on earth. let that cook."</p>
+      <p class="font-body text-base text-chalk-white">"anyway. your brain is a three-pound electric meat sponge. sleep well."</p>
+      <p class="font-body text-base text-chalk-white">"platypus PSA"</p>
+      <p class="font-body text-base text-chalk-white">"why does rain smell good? dirt bacteria having a party."</p>
+    </div>
+
+    <!-- DON'T column -->
+    <div class="border-l-4 border-hazard-pink bg-smoke-900 p-6 space-y-5 text-smoke-500">
+      <p class="font-display text-lg font-bold uppercase tracking-widest text-hazard-pink">Don't</p>
+      <p class="font-body text-base line-through">"have you ever wondered what makes that popping sound when you crack your knuckles?"</p>
+      <p class="font-body text-base line-through">"did you know… 52 factorial is a truly mind-boggling number! 🤯"</p>
+      <p class="font-body text-base line-through">"thanks for watching! don't forget to like and subscribe!"</p>
+      <p class="font-body text-base line-through">"TOP 5 WEIRD FACTS ABOUT PLATYPUSES YOU WON'T BELIEVE!!!"</p>
+      <p class="font-body text-base line-through">"🌧️✨ have you ever noticed the beautiful smell of rain?? 🌧️✨"</p>
+    </div>
+  </div>
+</div></section>
+      <div class="zigzag my-8" aria-hidden="true"></div>
+
+      <section id="checklist" class="py-16"><div class="mx-auto max-w-6xl">
+  <div class="mb-8 flex items-baseline gap-4">
+    <h2 class="heading-wonk font-display text-4xl font-bold text-chalk-white md:text-5xl">
+      Pre-publish checklist
+    </h2>
+    <span class="font-display text-xs font-bold uppercase tracking-[0.2em] text-beaker-blue">
+      60-second run · if any fail, don't ship
+    </span>
+  </div>
+
+  <div class="border-2 border-hazard-pink bg-off-black p-8">
+    <ol class="grid gap-3 md:grid-cols-2 font-body text-base text-chalk-white">
+      <li class="flex gap-3"><span class="inline-block h-5 w-5 shrink-0 border-2 border-smoke-500 mt-0.5" aria-hidden="true"></span><span><strong class="font-display text-smoke-500 text-xs uppercase tracking-widest block">01</strong>Hook lands in first 2s with no "today we'll" energy.</span></li>
+      <li class="flex gap-3"><span class="inline-block h-5 w-5 shrink-0 border-2 border-smoke-500 mt-0.5" aria-hidden="true"></span><span><strong class="font-display text-smoke-500 text-xs uppercase tracking-widest block">02</strong>Clear whiplash pivot by second 8.</span></li>
+      <li class="flex gap-3"><span class="inline-block h-5 w-5 shrink-0 border-2 border-smoke-500 mt-0.5" aria-hidden="true"></span><span><strong class="font-display text-smoke-500 text-xs uppercase tracking-widest block">03</strong>Science is accurate with a source on hand.</span></li>
+      <li class="flex gap-3"><span class="inline-block h-5 w-5 shrink-0 border-2 border-smoke-500 mt-0.5" aria-hidden="true"></span><span><strong class="font-display text-smoke-500 text-xs uppercase tracking-widest block">04</strong>Every technical term translated on first use.</span></li>
+      <li class="flex gap-3"><span class="inline-block h-5 w-5 shrink-0 border-2 border-smoke-500 mt-0.5" aria-hidden="true"></span><span><strong class="font-display text-smoke-500 text-xs uppercase tracking-widest block">05</strong>Video is 15–60 seconds.</span></li>
+      <li class="flex gap-3"><span class="inline-block h-5 w-5 shrink-0 border-2 border-smoke-500 mt-0.5" aria-hidden="true"></span><span><strong class="font-display text-smoke-500 text-xs uppercase tracking-widest block">06</strong>Hazard Pink appears on screen at least once.</span></li>
+      <li class="flex gap-3"><span class="inline-block h-5 w-5 shrink-0 border-2 border-smoke-500 mt-0.5" aria-hidden="true"></span><span><strong class="font-display text-smoke-500 text-xs uppercase tracking-widest block">07</strong>Captions burned in, Inter 600+, not CapCut default.</span></li>
+      <li class="flex gap-3"><span class="inline-block h-5 w-5 shrink-0 border-2 border-smoke-500 mt-0.5" aria-hidden="true"></span><span><strong class="font-display text-smoke-500 text-xs uppercase tracking-widest block">08</strong>Stinger in last 2–5s (callback / joke / wait-what).</span></li>
+      <li class="flex gap-3"><span class="inline-block h-5 w-5 shrink-0 border-2 border-smoke-500 mt-0.5" aria-hidden="true"></span><span><strong class="font-display text-smoke-500 text-xs uppercase tracking-widest block">09</strong>Zero talking heads, politics, or punching down.</span></li>
+      <li class="flex gap-3"><span class="inline-block h-5 w-5 shrink-0 border-2 border-smoke-500 mt-0.5" aria-hidden="true"></span><span><strong class="font-display text-smoke-500 text-xs uppercase tracking-widest block">10</strong>VO uses contractions and short sentences throughout.</span></li>
+      <li class="flex gap-3"><span class="inline-block h-5 w-5 shrink-0 border-2 border-smoke-500 mt-0.5" aria-hidden="true"></span><span><strong class="font-display text-smoke-500 text-xs uppercase tracking-widest block">11</strong>Thumbnail (Shorts): Off-Black BG + 1 accent + ≤4-word hook.</span></li>
+      <li class="flex gap-3"><span class="inline-block h-5 w-5 shrink-0 border-2 border-smoke-500 mt-0.5" aria-hidden="true"></span><span><strong class="font-display text-smoke-500 text-xs uppercase tracking-widest block">12</strong>Caption ≤200 chars, 3–5 hashtags, one is the pillar.</span></li>
+      <li class="flex gap-3"><span class="inline-block h-5 w-5 shrink-0 border-2 border-smoke-500 mt-0.5" aria-hidden="true"></span><span><strong class="font-display text-smoke-500 text-xs uppercase tracking-widest block">13</strong>Title fits one of our patterns.</span></li>
+      <li class="flex gap-3"><span class="inline-block h-5 w-5 shrink-0 border-2 border-smoke-500 mt-0.5" aria-hidden="true"></span><span><strong class="font-display text-smoke-500 text-xs uppercase tracking-widest block">14</strong>Read aloud — sounds like a smart friend, not a teacher.</span></li>
+      <li class="flex gap-3"><span class="inline-block h-5 w-5 shrink-0 border-2 border-smoke-500 mt-0.5" aria-hidden="true"></span><span><strong class="font-display text-smoke-500 text-xs uppercase tracking-widest block">15</strong>If someone shared this with a friend, is there a quotable line?</span></li>
+    </ol>
+  </div>
+</div></section>
+      <div class="zigzag my-8" aria-hidden="true"></div>
+
+      <section id="four-beat" class="py-16"><div class="mx-auto max-w-6xl">
+  <div class="mb-8 flex items-baseline gap-4">
+    <h2 class="heading-wonk font-display text-4xl font-bold text-chalk-white md:text-5xl">
+      Four-beat formula
+    </h2>
+    <span class="font-display text-xs font-bold uppercase tracking-[0.2em] text-signal-orange">
+      every video · no exceptions
+    </span>
+  </div>
+
+  <div class="relative overflow-hidden border border-smoke-900 bg-smoke-900 p-8">
+    <!-- Timeline bar -->
+    <div class="mb-8 flex h-3 w-full overflow-hidden">
+      <div class="w-[7%] bg-hazard-pink"></div>
+      <div class="w-[11%] bg-lab-lime"></div>
+      <div class="w-[78%] bg-plasma-violet"></div>
+      <div class="w-[4%] bg-signal-orange"></div>
+    </div>
+
+    <div class="grid gap-6 md:grid-cols-4">
+      <div>
+        <p class="font-display text-xs font-bold uppercase tracking-widest text-hazard-pink">Beat 1</p>
+        <p class="mt-1 font-display text-2xl font-bold text-chalk-white">Dumb premise</p>
+        <p class="mt-2 font-mono text-xs text-smoke-500">0–3s</p>
+        <p class="mt-3 font-body text-sm text-smoke-200">
+          Stop the thumb. Ask the dumbest honest version of the question.
+        </p>
+      </div>
+      <div>
+        <p class="font-display text-xs font-bold uppercase tracking-widest text-lab-lime">Beat 2</p>
+        <p class="mt-1 font-display text-2xl font-bold text-chalk-white">Whiplash pivot</p>
+        <p class="mt-2 font-mono text-xs text-smoke-500">3–8s</p>
+        <p class="mt-3 font-body text-sm text-smoke-200">
+          "Actually—" snap into the real topic. We're not joking anymore.
+        </p>
+      </div>
+      <div>
+        <p class="font-display text-xs font-bold uppercase tracking-widest text-plasma-violet">Beat 3</p>
+        <p class="mt-1 font-display text-2xl font-bold text-chalk-white">Real payoff</p>
+        <p class="mt-2 font-mono text-xs text-smoke-500">8–45s</p>
+        <p class="mt-3 font-body text-sm text-smoke-200">
+          The actual explanation. Rigorous. Translated, not dumbed down.
+        </p>
+      </div>
+      <div>
+        <p class="font-display text-xs font-bold uppercase tracking-widest text-signal-orange">Beat 4</p>
+        <p class="mt-1 font-display text-2xl font-bold text-chalk-white">Stinger</p>
+        <p class="mt-2 font-mono text-xs text-smoke-500">last 2–5s</p>
+        <p class="mt-3 font-body text-sm text-smoke-200">
+          Callback, wait-what, or absurdist bow. Never a CTA.
+        </p>
+      </div>
+    </div>
+
+    <p class="mt-8 border-l-4 border-hazard-pink bg-off-black p-4 font-body text-sm text-smoke-200">
+      Sweet spot: <span class="text-chalk-white font-semibold">22–45s</span> ·
+      floor <span class="text-chalk-white font-semibold">15s</span> ·
+      ceiling <span class="text-chalk-white font-semibold">60s</span>.
+      Longer than that, split into a two-parter.
+    </p>
+  </div>
+</div></section>
+    </main>
+
+    <footer class="mt-20 border-t border-smoke-900 bg-off-black px-6 py-12 md:px-12">
+  <div class="mx-auto max-w-6xl md:flex md:items-baseline md:justify-between md:gap-10">
+    <div>
+      <p class="font-display text-lg font-bold text-chalk-white">
+        ELI<span class="text-hazard-pink">5</span> HQ — Brand Guide v1.0
+      </p>
+      <p class="mt-2 font-body text-sm text-smoke-500">
+        Source of truth:
+        <a href="brand-bible.md" class="underline decoration-hazard-pink decoration-2 underline-offset-4 hover:text-chalk-white">brand-bible.md</a>
+        · last updated 2026-04-22
+      </p>
+    </div>
+    <p class="mt-6 max-w-md font-body text-xs text-smoke-500 md:mt-0 md:text-right">
+      This page is an internal reference. If a decision isn't here, default to
+      the bible. If the bible doesn't cover it, the founder decides.
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

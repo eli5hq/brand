@@ -92,22 +92,6 @@
 
       /* Offset color fill — one rule, applied to elements that want the
          "sticker is slightly off the outline" look */
-      .offset-fill {
-        position: relative;
-      }
-      .offset-fill > span {
-        position: relative;
-        z-index: 1;
-      }
-      .offset-fill::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: inherit;
-        transform: translate(3px, 3px);
-        z-index: 0;
-      }
-
       /* Ensure content sits above the noise overlay */
       main,
       header,
@@ -143,9 +127,9 @@
     <main class="px-6 md:px-12">
       <section id="foundation" class="py-16"><div class="mx-auto max-w-6xl">
   <div class="mb-6 inline-block">
-    <span class="heading-wonk font-display text-xs font-bold uppercase tracking-[0.2em] text-hazard-pink">
+    <h2 class="heading-wonk font-display text-xs font-bold uppercase tracking-[0.2em] text-hazard-pink">
       Foundation
-    </span>
+    </h2>
   </div>
   <div class="grid gap-8 md:grid-cols-5">
     <blockquote class="md:col-span-3 border-l-4 border-hazard-pink pl-6 font-display text-2xl font-medium leading-snug text-chalk-white md:text-3xl">
@@ -391,7 +375,7 @@
       <p class="mt-8 font-body text-sm text-smoke-200">
         The <span class="text-hazard-pink font-semibold">5</span> is the
         load-bearing personality character — sticker-treated, slightly
-        off-register, a little hand-touched. <span class="uppercase tracking-widest text-xs font-bold text-chalk-white bg-chalk-white px-1.5 py-0.5 text-off-black">HQ</span>
+        off-register, a little hand-touched. <span class="uppercase tracking-widest text-xs font-bold bg-chalk-white px-1.5 py-0.5 text-off-black">HQ</span>
         is a minor stamp, never a co-star.
       </p>
     </div>

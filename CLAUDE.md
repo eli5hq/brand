@@ -33,6 +33,12 @@ deployable style guide.
 ├── README.md                       ← human-facing repo orientation
 ├── brand-bible.md                  ← the operating manual (source of truth)
 ├── index.html                      ← the rendered style guide (deployed)
+├── assets/                         ← canonical logo SVGs (v1.1+)
+│   ├── logo-wordmark.svg
+│   ├── monogram-5-pink.svg
+│   └── monogram-5-black.svg
+├── channel-kit/
+│   └── index.html                  ← social surface kit (deployed)
 └── docs/
     └── superpowers/
         ├── specs/                  ← design specs (YYYY-MM-DD-<topic>-design.md)
@@ -78,6 +84,7 @@ rebrand. They're locked in `brand-bible.md` §7 "Governance → Locked."
 | Primary color    | Hazard Pink `#FF2E63`                              |
 | Anchor color     | Off-Black `#0E0E12`                                |
 | Warm alt color   | Paper Cream `#F5F1E8`                              |
+| Logo HQ stamp    | Chalk Yellow `#F5E663` (reserved — logo only)      |
 | Display font     | Space Grotesk (500, 700)                           |
 | Body font        | Inter (400, 500, 600)                              |
 | Primary handle   | `@eli5hq`                                          |
@@ -86,6 +93,7 @@ rebrand. They're locked in `brand-bible.md` §7 "Governance → Locked."
 | Format rule      | No talking heads. Ever.                            |
 | Scope            | STEM only — no politics, no news, no self-help     |
 | Audience         | Gen Z / young adults 16–24                         |
+| Logo construction | Three-part lockup: cream/black ELI + hazard-pink panel with knockout 5 (-2°) + chalk-yellow HQ stamp. See bible §3. |
 
 The secondary sticker-pack palette (Lab Lime, Plasma Violet, Signal
 Orange, Beaker Blue, Moss Green) is mapped to pillars in the bible but
@@ -133,8 +141,12 @@ copy fixes). When in doubt, ask the user whether to go light or heavy.
 ## Non-obvious
 
 - The wordmark's `5` is the load-bearing personality character. `HQ` is
-  a minor stamp. Do not resize `HQ` up for "balance" — that's an
-  anti-pattern flagged explicitly in the bible.
+  a minor stamp in **Chalk Yellow `#F5E663`**. Do not resize `HQ` up for
+  "balance" — that's an anti-pattern flagged explicitly in the bible.
+- The wordmark is a **three-part knockout lockup**. The `5` is always
+  knocked out to the surface color — when rendering the mark in code,
+  pass the correct background. On photos or gradients, place a solid card
+  behind the lockup first. Canonical SVGs in `/assets` (v1.1).
 - The "Hazard Pink + Signal Orange" pairing is **banned** (the bible
   says they fight). Any design that needs both is wrong.
 - Chalk White on Hazard Pink fails WCAG AA for body text (3.3:1). Only

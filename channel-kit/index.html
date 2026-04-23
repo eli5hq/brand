@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ELI5 HQ — Channel Kit v1.1</title>
+    <meta name="description" content="Platform-ready social surfaces for ELI5 HQ. Avatars, bios, video frames, thumbnails." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              "hazard-pink": "#FF2E63",
+              "off-black": "#0E0E12",
+              "paper-cream": "#F5F1E8",
+              "lab-lime": "#C6F24E",
+              "plasma-violet": "#7A3BFF",
+              "signal-orange": "#FF8A1F",
+              "beaker-blue": "#2EC4FF",
+              "moss-green": "#4F8A3C",
+              "smoke-900": "#1A1A20",
+              "smoke-500": "#6B6B78",
+              "smoke-200": "#C9C6BD",
+              "chalk-white": "#FAFAF5",
+              "chalk-yellow": "#F5E663",
+            },
+            fontFamily: {
+              display: ['"Space Grotesk"', "system-ui", "sans-serif"],
+              body: ['"Inter"', "system-ui", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      body::before {
+        content: "";
+        position: fixed; inset: 0; pointer-events: none; z-index: 1; opacity: 0.07;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+      }
+      main, header, footer { position: relative; z-index: 2; }
+
+      .heading-wonk { display: inline-block; transform: rotate(-1.25deg); }
+
+      /* Wordmark — same contract as index.html */
+      .wordmark {
+        display: inline-flex; align-items: flex-start; gap: 0.02em;
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-weight: 700; letter-spacing: -0.04em; line-height: 0.85; white-space: nowrap;
+      }
+      .wordmark__panel {
+        background: #ff2e63; padding: 0.02em 0.065em 0.065em 0.065em;
+        transform: rotate(-2deg); display: inline-block;
+        margin-left: 0.08em; margin-right: 0.04em;
+      }
+      .wordmark__five { color: var(--surface, #0e0e12); display: inline-block; line-height: 0.85; }
+      .wordmark__stamp {
+        display: inline-block; background: #f5e663; color: #0e0e12;
+        padding: 0.03em 0.075em; font-size: 0.14em; letter-spacing: 0.2em;
+        margin-top: 0.1em; align-self: flex-start; line-height: 1;
+      }
+
+      /* Monogram 5 — knockout to surface */
+      .mono-5 {
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-weight: 700; line-height: 1; display: inline-block;
+        transform: rotate(-3deg) translateY(2%);
+      }
+
+      /* 9:16 phone frame */
+      .phone {
+        aspect-ratio: 9/16; background: #0E0E12; position: relative;
+        overflow: hidden; border-radius: 28px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 0 8px #1A1A20, 0 0 0 10px #2a2a33;
+      }
+      .phone__chrome-top {
+        position: absolute; top: 14px; left: 0; right: 0;
+        display: flex; justify-content: center; align-items: center;
+        font-family: "Space Grotesk", system-ui, sans-serif; font-weight: 700;
+        color: #FAFAF5; font-size: 13px; letter-spacing: 0.5px;
+      }
+
+      /* Thumbnail grid aspect */
+      .thumb { aspect-ratio: 1/1; position: relative; overflow: hidden; }
+      .thumb-16-9 { aspect-ratio: 16/9; position: relative; overflow: hidden; }
+
+      /* Sticker-pill for hooks */
+      .hook-pill {
+        display: inline-block; padding: 6px 14px;
+        font-family: "Space Grotesk", system-ui, sans-serif; font-weight: 700;
+        font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase;
+        transform: rotate(-1.5deg);
+      }
+
+      /* Zigzag */
+      .zigzag {
+        height: 12px;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='12' viewBox='0 0 40 12'><path d='M0 6 L10 1 L20 11 L30 1 L40 6' fill='none' stroke='%23FF2E63' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+        background-repeat: repeat-x; background-position: center;
+      }
+
+      /* Caption style for video mockups — subtitle-safe block */
+      .caption-block {
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-weight: 700; text-transform: none; line-height: 1.1;
+        padding: 8px 12px; display: inline-block;
+      }
+    </style>
+  </head>
+
+  <body class="bg-off-black font-body text-chalk-white antialiased">
+    <!-- Header -->
+    <header class="px-6 py-16 md:px-12 md:py-20">
+      <div class="mx-auto max-w-6xl">
+        <a href="../index.html" class="inline-flex items-center gap-2 font-display text-xs font-bold uppercase tracking-[0.2em] text-smoke-500 hover:text-hazard-pink">
+          ← Brand Guide
+        </a>
+        <div class="mt-6 flex items-baseline gap-4">
+          <h1 class="heading-wonk font-display text-5xl font-bold text-chalk-white md:text-7xl">Channel Kit</h1>
+          <span class="font-display text-xs font-bold uppercase tracking-[0.2em] text-hazard-pink">v1.1 · platform-ready</span>
+        </div>
+        <p class="mt-6 max-w-2xl font-body text-lg text-smoke-200">
+          The surfaces that actually ship: avatars, bios, 9:16 video frames,
+          thumbnails. Every piece uses the locked logo construction
+          (cream/black ELI · hazard-pink panel with knockout 5 · chalk-yellow HQ stamp).
+        </p>
+      </div>
+    </header>
+
+    <main>
+      <!-- AVATARS -->
+      <section id="avatars" class="px-6 py-12 md:px-12">
+        <div class="mx-auto max-w-6xl">
+          <div class="mb-8 flex items-baseline gap-4">
+            <h2 class="heading-wonk font-display text-3xl font-bold text-chalk-white md:text-4xl">Profile avatars</h2>
+            <span class="font-display text-xs font-bold uppercase tracking-[0.2em] text-lab-lime">same mark · every platform</span>
+          </div>
+
+          <div class="border border-smoke-900 bg-smoke-900 p-8">
+            <p class="font-display text-xs font-bold uppercase tracking-widest text-smoke-500">Primary avatar · at real platform sizes</p>
+
+            <div class="mt-8 grid gap-10 md:grid-cols-4">
+              <!-- TikTok — 200px -->
+              <div class="text-center">
+                <div class="mx-auto flex h-[200px] w-[200px] items-center justify-center rounded-full bg-hazard-pink">
+                  <span class="mono-5 text-[150px]" style="color:#1A1A20;">5</span>
+                </div>
+                <p class="mt-4 font-display text-sm font-bold text-chalk-white">TikTok · 200px</p>
+                <p class="font-mono text-xs text-smoke-500">rounded · profile page</p>
+              </div>
+              <!-- Instagram — 110px square -->
+              <div class="text-center">
+                <div class="mx-auto flex h-[110px] w-[110px] items-center justify-center rounded-full bg-hazard-pink">
+                  <span class="mono-5 text-[82px]" style="color:#1A1A20;">5</span>
+                </div>
+                <p class="mt-4 font-display text-sm font-bold text-chalk-white">Instagram · 110px</p>
+                <p class="font-mono text-xs text-smoke-500">profile rail</p>
+              </div>
+              <!-- YouTube — 98px -->
+              <div class="text-center">
+                <div class="mx-auto flex h-[98px] w-[98px] items-center justify-center rounded-full bg-hazard-pink">
+                  <span class="mono-5 text-[72px]" style="color:#1A1A20;">5</span>
+                </div>
+                <p class="mt-4 font-display text-sm font-bold text-chalk-white">YouTube · 98px</p>
+                <p class="font-mono text-xs text-smoke-500">channel icon</p>
+              </div>
+              <!-- Thumbnail rail — 40px -->
+              <div class="text-center">
+                <div class="mx-auto flex h-[40px] w-[40px] items-center justify-center rounded-full bg-hazard-pink">
+                  <span class="mono-5 text-[30px]" style="color:#1A1A20;">5</span>
+                </div>
+                <p class="mt-4 font-display text-sm font-bold text-chalk-white">Comment rail · 40px</p>
+                <p class="font-mono text-xs text-smoke-500">smallest in-feed size</p>
+              </div>
+            </div>
+
+            <div class="mt-10 grid gap-6 md:grid-cols-2">
+              <div class="border border-lab-lime p-4">
+                <p class="font-display text-xs font-bold uppercase tracking-widest text-lab-lime">Do</p>
+                <ul class="mt-2 space-y-1 font-body text-sm text-smoke-200">
+                  <li>• Use <span class="font-mono text-xs bg-off-black px-1">monogram-5-pink.svg</span> everywhere by default.</li>
+                  <li>• On platforms that auto-crop to a circle, the mark still reads — 5 is centered.</li>
+                  <li>• Down to 40×40px the 5 still holds.</li>
+                </ul>
+              </div>
+              <div class="border border-hazard-pink p-4">
+                <p class="font-display text-xs font-bold uppercase tracking-widest text-hazard-pink">Don't</p>
+                <ul class="mt-2 space-y-1 font-body text-sm text-smoke-200">
+                  <li>• Put the full wordmark in an avatar — HQ stamp is illegible below ~14px.</li>
+                  <li>• Swap in a photo of Steve or any person.</li>
+                  <li>• Recolor the tile. Hazard Pink is the recognition asset.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="zigzag my-8" aria-hidden="true"></div>
+
+      <!-- BIOS -->
+      <section id="bios" class="px-6 py-12 md:px-12">
+        <div class="mx-auto max-w-6xl">
+          <div class="mb-8 flex items-baseline gap-4">
+            <h2 class="heading-wonk font-display text-3xl font-bold text-chalk-white md:text-4xl">Platform bios</h2>
+            <span class="font-display text-xs font-bold uppercase tracking-[0.2em] text-plasma-violet">copy-paste ready</span>
+          </div>
+
+          <div class="grid gap-5 md:grid-cols-2">
+            <!-- TikTok / Instagram short -->
+            <div class="border border-smoke-900 bg-smoke-900 p-6">
+              <p class="font-display text-xs font-bold uppercase tracking-widest text-smoke-500">TikTok · Instagram · YouTube Shorts</p>
+              <p class="mt-3 font-display text-xs font-bold uppercase tracking-widest text-hazard-pink">80 char limit</p>
+              <p class="mt-4 font-body text-base text-chalk-white leading-snug">
+                STEM like you're 5. the science is still for grown-ups 🧪 new vid tues+fri
+              </p>
+              <p class="mt-3 font-mono text-xs text-smoke-500">76 chars</p>
+            </div>
+
+            <!-- Display name / handle -->
+            <div class="border border-smoke-900 bg-smoke-900 p-6">
+              <p class="font-display text-xs font-bold uppercase tracking-widest text-smoke-500">Handle &amp; display name</p>
+              <dl class="mt-4 space-y-3 font-mono text-sm">
+                <div class="flex justify-between">
+                  <dt class="text-smoke-500">primary handle</dt>
+                  <dd class="text-chalk-white">@eli5hq</dd>
+                </div>
+                <div class="flex justify-between">
+                  <dt class="text-smoke-500">fallback</dt>
+                  <dd class="text-chalk-white">@eli5.hq</dd>
+                </div>
+                <div class="flex justify-between">
+                  <dt class="text-smoke-500">display name</dt>
+                  <dd class="text-chalk-white">ELI5 HQ</dd>
+                </div>
+              </dl>
+            </div>
+
+            <!-- YouTube long -->
+            <div class="border border-smoke-900 bg-smoke-900 p-6 md:col-span-2">
+              <p class="font-display text-xs font-bold uppercase tracking-widest text-smoke-500">YouTube channel description · long-form</p>
+              <p class="mt-3 font-display text-xs font-bold uppercase tracking-widest text-hazard-pink">~500 char target</p>
+              <p class="mt-4 font-body text-base text-chalk-white leading-relaxed">
+                STEM explained like you're 5 — but the science is still for grown-ups.
+                No textbooks. No talking heads. Just a dumb premise, a whiplash pivot,
+                and a real answer you can explain to your friends.
+                <br /><br />
+                Math, space, biology, chemistry, how-does-that-actually-work stuff.
+                New videos Tuesday &amp; Friday.
+                <br /><br />
+                Questions? drop them below — the best ones become videos.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="zigzag my-8" aria-hidden="true"></div>
+
+      <!-- VIDEO FRAMES -->
+      <section id="video-frames" class="px-6 py-12 md:px-12">
+        <div class="mx-auto max-w-6xl">
+          <div class="mb-8 flex items-baseline gap-4">
+            <h2 class="heading-wonk font-display text-3xl font-bold text-chalk-white md:text-4xl">9:16 video frames</h2>
+            <span class="font-display text-xs font-bold uppercase tracking-[0.2em] text-beaker-blue">four-beat formula · on-screen</span>
+          </div>
+
+          <p class="mb-8 max-w-3xl font-body text-base text-smoke-200">
+            Every video runs the four-beat formula: dumb premise → whiplash pivot
+            → real payoff → stinger. Captions live in the safe zone (center 80%
+            vertically, away from platform UI). Topic color fills the stinger frame.
+          </p>
+
+          <div class="grid gap-6 md:grid-cols-4">
+            <!-- Beat 1: dumb premise -->
+            <div>
+              <p class="mb-3 font-display text-xs font-bold uppercase tracking-widest text-hazard-pink">Beat 1 · 0–3s</p>
+              <p class="mb-3 font-body text-xs text-smoke-500">Dumb premise (hook)</p>
+              <div class="phone">
+                <div class="phone__chrome-top">
+                  <span class="wordmark" style="--surface:#0E0E12; color:#FAFAF5; font-size: 14px;">
+                    <span>ELI</span><span class="wordmark__panel"><span class="wordmark__five">5</span></span><span class="wordmark__stamp">HQ</span>
+                  </span>
+                </div>
+                <!-- Photo stand-in: warm paper-cream background -->
+                <div class="absolute inset-0 flex items-center justify-center bg-paper-cream">
+                  <div class="absolute top-16 left-0 right-0 text-center px-6">
+                    <span class="caption-block bg-hazard-pink text-chalk-white" style="font-size: 32px; transform: rotate(-1.5deg);">
+                      your blood is<br/>literally blue
+                    </span>
+                  </div>
+                  <div class="absolute bottom-24 left-0 right-0 text-center px-6">
+                    <span class="hook-pill bg-off-black text-chalk-white">question mark?</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Beat 2: pivot -->
+            <div>
+              <p class="mb-3 font-display text-xs font-bold uppercase tracking-widest text-hazard-pink">Beat 2 · 3–8s</p>
+              <p class="mb-3 font-body text-xs text-smoke-500">Whiplash pivot</p>
+              <div class="phone">
+                <div class="phone__chrome-top">
+                  <span class="wordmark" style="--surface:#0E0E12; color:#FAFAF5; font-size: 14px;">
+                    <span>ELI</span><span class="wordmark__panel"><span class="wordmark__five">5</span></span><span class="wordmark__stamp">HQ</span>
+                  </span>
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center bg-off-black">
+                  <div class="absolute top-20 left-0 right-0 text-center px-6">
+                    <span class="caption-block bg-chalk-yellow text-off-black" style="font-size: 28px; transform: rotate(1deg);">
+                      WAIT.<br/>nope.
+                    </span>
+                  </div>
+                  <div class="absolute bottom-28 left-0 right-0 text-center px-6">
+                    <span class="caption-block bg-lab-lime text-off-black" style="font-size: 22px;">
+                      it's never blue.<br/>it just LOOKS blue.
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Beat 3: payoff -->
+            <div>
+              <p class="mb-3 font-display text-xs font-bold uppercase tracking-widest text-hazard-pink">Beat 3 · 8–45s</p>
+              <p class="mb-3 font-body text-xs text-smoke-500">Real payoff · on-topic color</p>
+              <div class="phone">
+                <div class="phone__chrome-top">
+                  <span class="wordmark" style="--surface:#0E0E12; color:#FAFAF5; font-size: 14px;">
+                    <span>ELI</span><span class="wordmark__panel"><span class="wordmark__five">5</span></span><span class="wordmark__stamp">HQ</span>
+                  </span>
+                </div>
+                <div class="absolute inset-0 bg-signal-orange">
+                  <div class="absolute top-20 left-4 right-4 text-center">
+                    <span class="caption-block bg-off-black text-chalk-white" style="font-size: 22px;">
+                      skin filters light.<br/>red goes in. blue bounces out.
+                    </span>
+                  </div>
+                  <div class="absolute bottom-28 left-4 right-4 text-center">
+                    <span class="caption-block bg-chalk-white text-off-black" style="font-size: 18px;">
+                      your eyes are lying<br/>(politely)
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Beat 4: stinger -->
+            <div>
+              <p class="mb-3 font-display text-xs font-bold uppercase tracking-widest text-hazard-pink">Beat 4 · last 2–5s</p>
+              <p class="mb-3 font-body text-xs text-smoke-500">Stinger · pillar color full-bleed</p>
+              <div class="phone">
+                <div class="phone__chrome-top">
+                  <span class="wordmark" style="--surface:#7A3BFF; color:#FAFAF5; font-size: 14px;">
+                    <span>ELI</span><span class="wordmark__panel"><span class="wordmark__five">5</span></span><span class="wordmark__stamp">HQ</span>
+                  </span>
+                </div>
+                <div class="absolute inset-0 flex items-center justify-center bg-plasma-violet">
+                  <div class="text-center px-4">
+                    <p class="font-display font-bold text-chalk-white" style="font-size: 44px; line-height: 0.9; transform: rotate(-2deg);">
+                      follow for more<br/>wrong-on-purpose<br/>science
+                    </p>
+                  </div>
+                  <div class="absolute bottom-10 left-0 right-0 text-center">
+                    <span class="wordmark" style="--surface:#7A3BFF; color:#FAFAF5; font-size: 26px;">
+                      <span>ELI</span><span class="wordmark__panel"><span class="wordmark__five">5</span></span><span class="wordmark__stamp">HQ</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-10 border-l-4 border-beaker-blue bg-smoke-900 p-5">
+            <p class="font-display text-sm font-bold uppercase tracking-widest text-beaker-blue">Safe-zone rules</p>
+            <p class="mt-2 font-body text-base text-smoke-200">
+              Top 14% and bottom 22% are platform chrome zones (username, CTA,
+              caption tray). Keep captions inside the center band. Wordmark sits
+              at the top-14% line on every frame for continuity.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <div class="zigzag my-8" aria-hidden="true"></div>
+
+      <!-- YT THUMBNAILS -->
+      <section id="thumbnails" class="px-6 py-12 md:px-12">
+        <div class="mx-auto max-w-6xl">
+          <div class="mb-8 flex items-baseline gap-4">
+            <h2 class="heading-wonk font-display text-3xl font-bold text-chalk-white md:text-4xl">YouTube thumbnails</h2>
+            <span class="font-display text-xs font-bold uppercase tracking-[0.2em] text-signal-orange">16:9 · readable at 120px wide</span>
+          </div>
+
+          <div class="grid gap-6 md:grid-cols-2">
+            <!-- Thumb 1 — math -->
+            <div>
+              <div class="thumb-16-9 bg-lab-lime relative border border-smoke-900">
+                <div class="absolute inset-0 flex flex-col justify-between p-6">
+                  <div class="flex items-start justify-between">
+                    <span class="caption-block bg-off-black text-chalk-white" style="font-size: 28px; line-height: 0.95; transform: rotate(-1.5deg);">
+                      0.999…<br/>=<br/>1
+                    </span>
+                    <span class="wordmark" style="--surface:#C6F24E; color:#0E0E12; font-size: 18px;">
+                      <span>ELI</span><span class="wordmark__panel"><span class="wordmark__five">5</span></span><span class="wordmark__stamp">HQ</span>
+                    </span>
+                  </div>
+                  <span class="self-end caption-block bg-hazard-pink text-chalk-white" style="font-size: 16px; transform: rotate(2deg);">
+                    yes. really.
+                  </span>
+                </div>
+              </div>
+              <p class="mt-3 font-display text-sm font-bold text-chalk-white">Pillar: math · Lab Lime ground</p>
+            </div>
+
+            <!-- Thumb 2 — space -->
+            <div>
+              <div class="thumb-16-9 bg-plasma-violet relative border border-smoke-900">
+                <div class="absolute inset-0 flex flex-col justify-between p-6">
+                  <div class="flex items-start justify-between">
+                    <span class="caption-block bg-chalk-white text-off-black" style="font-size: 26px; line-height: 0.95; transform: rotate(-1.5deg);">
+                      space is<br/>mostly nothing
+                    </span>
+                    <span class="wordmark" style="--surface:#7A3BFF; color:#FAFAF5; font-size: 18px;">
+                      <span>ELI</span><span class="wordmark__panel"><span class="wordmark__five">5</span></span><span class="wordmark__stamp">HQ</span>
+                    </span>
+                  </div>
+                  <span class="self-end caption-block bg-hazard-pink text-chalk-white" style="font-size: 16px; transform: rotate(2deg);">
+                    we did the math
+                  </span>
+                </div>
+              </div>
+              <p class="mt-3 font-display text-sm font-bold text-chalk-white">Pillar: space · Plasma Violet ground</p>
+            </div>
+
+            <!-- Thumb 3 — bio -->
+            <div>
+              <div class="thumb-16-9 bg-signal-orange relative border border-smoke-900">
+                <div class="absolute inset-0 flex flex-col justify-between p-6">
+                  <div class="flex items-start justify-between">
+                    <span class="caption-block bg-off-black text-chalk-white" style="font-size: 28px; line-height: 0.95; transform: rotate(-1.5deg);">
+                      why does pee<br/>smell like<br/>asparagus
+                    </span>
+                    <span class="wordmark" style="--surface:#FF8A1F; color:#0E0E12; font-size: 18px;">
+                      <span>ELI</span><span class="wordmark__panel"><span class="wordmark__five">5</span></span><span class="wordmark__stamp">HQ</span>
+                    </span>
+                  </div>
+                  <span class="self-end caption-block bg-chalk-yellow text-off-black" style="font-size: 16px; transform: rotate(2deg);">
+                    (science did this)
+                  </span>
+                </div>
+              </div>
+              <p class="mt-3 font-display text-sm font-bold text-chalk-white">Pillar: biology · Signal Orange ground</p>
+            </div>
+
+            <!-- Thumb 4 — chem -->
+            <div>
+              <div class="thumb-16-9 bg-beaker-blue relative border border-smoke-900">
+                <div class="absolute inset-0 flex flex-col justify-between p-6">
+                  <div class="flex items-start justify-between">
+                    <span class="caption-block bg-off-black text-chalk-white" style="font-size: 28px; line-height: 0.95; transform: rotate(-1.5deg);">
+                      soap is<br/>two-faced<br/>on purpose
+                    </span>
+                    <span class="wordmark" style="--surface:#2EC4FF; color:#0E0E12; font-size: 18px;">
+                      <span>ELI</span><span class="wordmark__panel"><span class="wordmark__five">5</span></span><span class="wordmark__stamp">HQ</span>
+                    </span>
+                  </div>
+                  <span class="self-end caption-block bg-hazard-pink text-chalk-white" style="font-size: 16px; transform: rotate(2deg);">
+                    and that's good
+                  </span>
+                </div>
+              </div>
+              <p class="mt-3 font-display text-sm font-bold text-chalk-white">Pillar: chemistry · Beaker Blue ground</p>
+            </div>
+          </div>
+
+          <div class="mt-10 grid gap-4 md:grid-cols-2">
+            <div class="border border-lab-lime p-5">
+              <p class="font-display text-xs font-bold uppercase tracking-widest text-lab-lime">Thumbnail rules</p>
+              <ul class="mt-2 space-y-1 font-body text-sm text-smoke-200">
+                <li>• Pillar color = full-bleed ground. No gradients.</li>
+                <li>• Big caption (≥24px @ 1280×720) in Space Grotesk 700.</li>
+                <li>• Wordmark top-right, ~5% of thumbnail height.</li>
+                <li>• Hazard Pink earns its 10% somewhere (pill, accent caption).</li>
+              </ul>
+            </div>
+            <div class="border border-hazard-pink p-5">
+              <p class="font-display text-xs font-bold uppercase tracking-widest text-hazard-pink">Anti-patterns</p>
+              <ul class="mt-2 space-y-1 font-body text-sm text-smoke-200">
+                <li>• Shocked-face overlays. We don't do Mr Beast.</li>
+                <li>• Red arrows, circles, "YOU WON'T BELIEVE" text.</li>
+                <li>• Signal Orange + Hazard Pink in the same thumb — banned.</li>
+                <li>• Chalk Yellow as a pillar ground — it's reserved for the HQ stamp.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="mt-20 border-t border-smoke-900 bg-off-black px-6 py-12 md:px-12">
+      <div class="mx-auto max-w-6xl md:flex md:items-baseline md:justify-between md:gap-10">
+        <div>
+          <div class="wordmark" style="--surface:#0E0E12; color:#FAFAF5; font-size: 24px;">
+            <span>ELI</span><span class="wordmark__panel"><span class="wordmark__five">5</span></span><span class="wordmark__stamp">HQ</span>
+          </div>
+          <p class="mt-3 font-display text-xs font-bold uppercase tracking-widest text-smoke-500">Channel Kit v1.1</p>
+          <p class="mt-2 font-body text-sm text-smoke-500">
+            Source of truth:
+            <a href="../brand-bible.md" class="underline decoration-hazard-pink decoration-2 underline-offset-4 hover:text-chalk-white">brand-bible.md</a>
+            · last updated 2026-04-23
+          </p>
+        </div>
+        <p class="mt-6 max-w-md font-body text-xs text-smoke-500 md:mt-0 md:text-right">
+          Platform kit for social surfaces. For tokens, type, and voice, see the main
+          <a href="../index.html" class="underline decoration-hazard-pink decoration-2 underline-offset-4 hover:text-chalk-white">Brand Guide</a>.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

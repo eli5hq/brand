@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2560 1440" width="2560" height="1440">
+  <title>ELI5 HQ — YouTube channel banner</title>
+
+  <!-- Full-bleed background -->
+  <rect width="2560" height="1440" fill="#0E0E12"/>
+
+  <!-- Mobile-safe zone content. Safe zone is 1546x423 centered at (1280, 720).
+       Left = 507, Right = 2053, Top = 508.5, Bottom = 931.5. Three thirds of
+       507px width each, separated by small gutters. -->
+
+  <!-- LEFT THIRD: wordmark "ELI 5 HQ" at y ~720 baseline -->
+  <g transform="translate(600 560)">
+    <!-- "ELI" in Chalk White -->
+    <text x="0" y="110" font-family="'Space Grotesk', sans-serif" font-weight="700"
+          font-size="160" fill="#FAFAF5" letter-spacing="-4">ELI</text>
+    <!-- Custom 5 glyph in Hazard Pink, sized to match the E/L/I cap height -->
+    <g transform="translate(260 -20) scale(0.16)" fill="#FF2E63">
+      <path d="M 210 165 L 745 155 L 735 295 L 355 305 L 345 445 Q 505 405 660 455 Q 840 515 855 695 Q 840 870 640 895 Q 430 905 225 830 L 285 695 Q 425 765 575 755 Q 705 745 700 640 Q 695 560 560 555 Q 430 560 335 605 L 200 595 Z"/>
+    </g>
+    <!-- "HQ" as a smaller stamp in Chalk White on a Chalk White tile — here
+         the bible calls for HQ as a minor stamp. Implemented as tightly-set
+         Space Grotesk 700 in a thin rounded rect to read as a stamp. -->
+    <g transform="translate(0 180)">
+      <rect x="0" y="0" width="180" height="60" rx="4" fill="#FAFAF5"/>
+      <text x="90" y="44" font-family="'Space Grotesk', sans-serif" font-weight="700"
+            font-size="40" fill="#0E0E12" text-anchor="middle" letter-spacing="4">HQ</text>
+    </g>
+  </g>
+
+  <!-- MIDDLE THIRD: tagline -->
+  <g transform="translate(1165 620)">
+    <text x="0" y="0" font-family="'Inter', sans-serif" font-weight="500"
+          font-size="48" fill="#FAFAF5">STEM explained like you're 5.</text>
+    <text x="0" y="72" font-family="'Inter', sans-serif" font-weight="500"
+          font-size="48" fill="#FAFAF5">the science is still for grown-ups.</text>
+  </g>
+
+  <!-- RIGHT THIRD: cadence callout -->
+  <g transform="translate(1830 620)">
+    <text x="0" y="0" font-family="'Space Grotesk', sans-serif" font-weight="700"
+          font-size="44" fill="#FAFAF5" letter-spacing="2">new drops</text>
+    <text x="0" y="80" font-family="'Space Grotesk', sans-serif" font-weight="700"
+          font-size="72" fill="#C6F24E" letter-spacing="2">tue <tspan fill="#C6F24E">+</tspan> fri</text>
+    <!-- Hazard Pink scribble underline beneath the + character. The + sits
+         around x ~80 based on glyph widths; the scribble is a short
+         hand-drawn path. -->
+    <path d="M 82 100 Q 98 90 114 102 Q 126 110 142 98"
+          stroke="#FF2E63" stroke-width="6" fill="none" stroke-linecap="round"/>
+  </g>
+</svg>

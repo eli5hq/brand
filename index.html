@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>ELI5 HQ — Brand Style Guide v1.0</title>
+    <title>ELI5 HQ — Brand Style Guide v1.1</title>
     <meta name="description" content="Internal brand reference for ELI5 HQ. Colors, typography, voice, editorial formula, and pre-publish checklist." />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -31,6 +31,7 @@
               "smoke-500": "#6B6B78",
               "smoke-200": "#C9C6BD",
               "chalk-white": "#FAFAF5",
+              "chalk-yellow": "#F5E663",
             },
             fontFamily: {
               display: ['"Space Grotesk"', "system-ui", "sans-serif"],
@@ -92,6 +93,60 @@
 
       /* Offset color fill — one rule, applied to elements that want the
          "sticker is slightly off the outline" look */
+      /* Wordmark construction — matches bible §3 Logo Construction Rules.
+         The pink panel hugs the 5; the 5 is knocked out to the surface.
+         Drive the knockout via the --surface CSS var so the same markup
+         works on any background. */
+      .wordmark {
+        display: inline-flex;
+        align-items: flex-start;
+        gap: 0.02em;
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-weight: 700;
+        letter-spacing: -0.04em;
+        line-height: 0.85;
+        white-space: nowrap;
+      }
+      .wordmark__panel {
+        background: #ff2e63;
+        padding: 0.02em 0.065em 0.065em 0.065em;
+        transform: rotate(-2deg);
+        transform-origin: center;
+        display: inline-block;
+        margin-left: 0.08em;
+        margin-right: 0.04em;
+      }
+      .wordmark__five {
+        color: var(--surface, #0e0e12);
+        display: inline-block;
+        line-height: 0.85;
+      }
+      .wordmark__stamp {
+        display: inline-block;
+        background: #f5e663;
+        color: #0e0e12;
+        padding: 0.03em 0.075em;
+        font-size: 0.14em;
+        letter-spacing: 0.2em;
+        margin-top: 0.1em;
+        align-self: flex-start;
+        line-height: 1;
+      }
+      /* Avatar monogram — same knockout construction, 5 alone */
+      .monogram {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .monogram__five {
+        font-family: "Space Grotesk", system-ui, sans-serif;
+        font-weight: 700;
+        line-height: 1;
+        display: inline-block;
+        transform: rotate(-3deg) translateY(4%);
+      }
+
       /* Ensure content sits above the noise overlay */
       main,
       header,
@@ -107,17 +162,14 @@
       <div class="mx-auto max-w-6xl">
   <div class="mb-8 inline-block">
     <span class="sticker sticker--tilt-pos sticker--shadow-lime inline-block bg-hazard-pink px-3 py-1 font-display text-xs font-bold uppercase tracking-wider text-off-black">
-      v1.0 · Brand Guide
+      v1.1 · Brand Guide
     </span>
   </div>
-  <h1 class="font-display font-bold leading-[0.85] tracking-tight">
-    <span class="block text-chalk-white" style="font-size: clamp(64px, 14vw, 220px);">
-      ELI<span class="text-hazard-pink">5</span>
-    </span>
-    <span class="mt-2 block text-smoke-500" style="font-size: clamp(28px, 5vw, 72px);">
-      HQ
-    </span>
-  </h1>
+  <div class="wordmark" style="--surface:#0E0E12; color:#FAFAF5; font-size: clamp(64px, 14vw, 220px);">
+    <span>ELI</span>
+    <span class="wordmark__panel"><span class="wordmark__five">5</span></span>
+    <span class="wordmark__stamp">HQ</span>
+  </div>
   <p class="mt-10 max-w-2xl font-body text-lg text-smoke-200 md:text-xl">
     STEM explained like you're 5. The science is still for grown-ups.
   </p>
@@ -274,6 +326,20 @@
     </div>
   </div>
 
+  <div class="mt-10 border border-chalk-yellow bg-smoke-900 p-5">
+    <p class="font-display text-xs font-bold uppercase tracking-widest text-chalk-yellow">Reserved role · not a pillar color</p>
+    <div class="mt-3 flex items-center gap-5">
+      <div class="h-14 w-14 bg-chalk-yellow flex-shrink-0"></div>
+      <div>
+        <p class="font-display text-lg font-bold text-chalk-white">Chalk Yellow <span class="font-mono text-sm text-smoke-200 font-normal">#F5E663</span></p>
+        <p class="mt-1 font-body text-sm text-smoke-200">
+          Logo HQ stamp only. Do not assign to a topic pillar and do not
+          use as a general-purpose accent.
+        </p>
+      </div>
+    </div>
+  </div>
+
   <div class="mt-10 border-l-4 border-lab-lime bg-smoke-900 p-5">
     <p class="font-display text-sm font-bold uppercase tracking-widest text-lab-lime">
       60 / 30 / 10 rule
@@ -354,29 +420,33 @@
       <section id="logo" class="py-16"><div class="mx-auto max-w-6xl">
   <div class="mb-8 flex items-baseline gap-4">
     <h2 class="heading-wonk font-display text-4xl font-bold text-chalk-white md:text-5xl">
-      Logo — concept
+      Logo — locked v1.1
     </h2>
     <span class="font-display text-xs font-bold uppercase tracking-[0.2em] text-plasma-violet">
-      wordmark-led · the 5 does the work
+      three-part lockup · knockout 5
     </span>
   </div>
 
   <div class="grid gap-8 md:grid-cols-5">
     <!-- Wordmark mock -->
     <div class="md:col-span-3 border border-smoke-900 bg-smoke-900 p-10">
-      <p class="font-display text-xs font-bold uppercase tracking-widest text-smoke-500">Primary lockup</p>
-      <div class="mt-6 flex items-start gap-3">
-        <span class="font-display text-[128px] font-bold leading-none text-chalk-white">ELI</span>
-        <span class="sticker sticker--shadow-pink font-display text-[128px] font-bold leading-none text-hazard-pink">5</span>
-        <span class="mt-3 inline-block bg-chalk-white px-2 py-1 font-display text-xs font-bold uppercase tracking-widest text-off-black">
-          HQ
-        </span>
+      <p class="font-display text-xs font-bold uppercase tracking-widest text-smoke-500">Primary lockup · on Off-Black</p>
+      <div class="mt-6">
+        <div class="wordmark" style="--surface:#1A1A20; color:#FAFAF5; font-size: 128px;">
+          <span>ELI</span>
+          <span class="wordmark__panel"><span class="wordmark__five">5</span></span>
+          <span class="wordmark__stamp">HQ</span>
+        </div>
       </div>
-      <p class="mt-8 font-body text-sm text-smoke-200">
-        The <span class="text-hazard-pink font-semibold">5</span> is the
-        load-bearing personality character — sticker-treated, slightly
-        off-register, a little hand-touched. <span class="uppercase tracking-widest text-xs font-bold bg-chalk-white px-1.5 py-0.5 text-off-black">HQ</span>
-        is a minor stamp, never a co-star.
+      <div class="mt-8 grid gap-2 font-mono text-xs text-smoke-200">
+        <div class="flex gap-3"><span class="inline-block w-4 h-4 bg-chalk-white flex-shrink-0"></span><span><strong class="text-chalk-white">ELI</strong> — Space Grotesk 700, -4% tracking, cream on dark / black on light.</span></div>
+        <div class="flex gap-3"><span class="inline-block w-4 h-4 bg-hazard-pink flex-shrink-0"></span><span><strong class="text-chalk-white">Panel</strong> — Hazard Pink rect, rotated −2°, hugs the 5.</span></div>
+        <div class="flex gap-3"><span class="inline-block w-4 h-4 border border-smoke-500 flex-shrink-0"></span><span><strong class="text-chalk-white">The 5</strong> — knocked out to the surface color (transparent through the panel).</span></div>
+        <div class="flex gap-3"><span class="inline-block w-4 h-4 bg-chalk-yellow flex-shrink-0"></span><span><strong class="text-chalk-white">HQ stamp</strong> — Chalk Yellow rect, Off-Black HQ, +20% tracking, ~14% of ELI cap-height.</span></div>
+      </div>
+      <p class="mt-6 font-body text-sm text-smoke-200">
+        Color roles are fixed. Rotation is fixed. Below ~14px cap-height,
+        the HQ stamp stops reading — use the monogram alone.
       </p>
     </div>
 
@@ -384,12 +454,35 @@
     <div class="md:col-span-2 border border-smoke-900 bg-smoke-900 p-10 flex flex-col items-center justify-center text-center">
       <p class="font-display text-xs font-bold uppercase tracking-widest text-smoke-500 self-start">Monogram · Avatar</p>
       <div class="my-6 flex h-48 w-48 items-center justify-center bg-hazard-pink">
-        <span class="font-display text-[120px] font-bold leading-none text-off-black">5</span>
+        <span class="wordmark__five font-display text-[152px] font-bold leading-none" style="color:#1A1A20; transform: rotate(-3deg) translateY(2%); display:inline-block;">5</span>
       </div>
       <p class="font-body text-sm text-smoke-200">
-        Off-Black 5 on a Hazard Pink tile. Works at 40×40px in the profile
-        rail. Never invert to Paper Cream — loses punch.
+        Same knockout construction, 5 alone. Hazard Pink tile; the 5 is
+        the surface color (here Smoke 900). Works at 40×40px in the
+        profile rail.
       </p>
+    </div>
+  </div>
+
+  <!-- Surface demo row — proves the knockout works on any ground -->
+  <div class="mt-8">
+    <p class="mb-3 font-display text-xs font-bold uppercase tracking-widest text-smoke-500">Surface adaptability · the 5 matches whatever's behind the lockup</p>
+    <div class="grid gap-4 md:grid-cols-3">
+      <div class="bg-off-black border border-smoke-500 p-6 flex items-center justify-center">
+        <div class="wordmark" style="--surface:#0E0E12; color:#FAFAF5; font-size: 56px;">
+          <span>ELI</span><span class="wordmark__panel"><span class="wordmark__five">5</span></span><span class="wordmark__stamp">HQ</span>
+        </div>
+      </div>
+      <div class="bg-paper-cream p-6 flex items-center justify-center">
+        <div class="wordmark" style="--surface:#F5F1E8; color:#0E0E12; font-size: 56px;">
+          <span>ELI</span><span class="wordmark__panel"><span class="wordmark__five">5</span></span><span class="wordmark__stamp">HQ</span>
+        </div>
+      </div>
+      <div class="bg-beaker-blue p-6 flex items-center justify-center">
+        <div class="wordmark" style="--surface:#2EC4FF; color:#0E0E12; font-size: 56px;">
+          <span>ELI</span><span class="wordmark__panel"><span class="wordmark__five">5</span></span><span class="wordmark__stamp">HQ</span>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -397,16 +490,18 @@
     <ul class="border border-lab-lime bg-smoke-900 p-6 font-body text-sm text-smoke-200 space-y-2">
       <li class="font-display font-bold text-lab-lime uppercase tracking-widest text-xs">Do</li>
       <li>• Flat only — no gradients in the lockup.</li>
-      <li>• 5 works alone as the avatar.</li>
-      <li>• Single-color knockout viable (white on color, color on off-black).</li>
-      <li>• Min wordmark width 120px digital.</li>
+      <li>• 5 is always knocked out to the surface color.</li>
+      <li>• Panel rotation locked at −2°. HQ stamp sits flat.</li>
+      <li>• On photos/gradients, place the lockup on a solid card first.</li>
+      <li>• Min wordmark width 120px digital / 30mm print.</li>
     </ul>
     <ul class="border border-hazard-pink bg-smoke-900 p-6 font-body text-sm text-smoke-200 space-y-2">
       <li class="font-display font-bold text-hazard-pink uppercase tracking-widest text-xs">Don't</li>
+      <li>• Swap color roles — HQ is never pink, panel is never yellow.</li>
+      <li>• Oversize HQ for "balance" — it's a stamp, not a co-star.</li>
       <li>• Science-cliché icons (atoms, beakers, gears, lightbulbs).</li>
       <li>• Gradients, drop-shadows, or 3D in the primary lockup.</li>
-      <li>• Cutesy. We're confident, not precious.</li>
-      <li>• HQ oversized — it's a stamp, not a co-star.</li>
+      <li>• Use the full lockup below ~14px cap-height — switch to monogram.</li>
     </ul>
   </div>
 </div></section>
@@ -632,13 +727,14 @@
     <footer class="mt-20 border-t border-smoke-900 bg-off-black px-6 py-12 md:px-12">
   <div class="mx-auto max-w-6xl md:flex md:items-baseline md:justify-between md:gap-10">
     <div>
-      <p class="font-display text-lg font-bold text-chalk-white">
-        ELI<span class="text-hazard-pink">5</span> HQ — Brand Guide v1.0
-      </p>
+      <div class="wordmark" style="--surface:#0E0E12; color:#FAFAF5; font-size: 24px;">
+        <span>ELI</span><span class="wordmark__panel"><span class="wordmark__five">5</span></span><span class="wordmark__stamp">HQ</span>
+      </div>
+      <p class="mt-3 font-display text-xs font-bold uppercase tracking-widest text-smoke-500">Brand Guide v1.1</p>
       <p class="mt-2 font-body text-sm text-smoke-500">
         Source of truth:
         <a href="brand-bible.md" class="underline decoration-hazard-pink decoration-2 underline-offset-4 hover:text-chalk-white">brand-bible.md</a>
-        · last updated 2026-04-22
+        · last updated 2026-04-23
       </p>
     </div>
     <p class="mt-6 max-w-md font-body text-xs text-smoke-500 md:mt-0 md:text-right">

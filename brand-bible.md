@@ -1,8 +1,8 @@
-# ELI5 HQ — Brand Bible v1.0
+# ELI5 HQ — Brand Bible v1.1
 
 **Status:** Active
 **Owner:** Steve Harmeyer
-**Date:** 2026-04-22
+**Date:** 2026-04-23
 **Governing brief:** `docs/superpowers/specs/2026-04-22-eli5hq-brand-brief.md`
 
 This bible is the working spec for everyone who touches ELI5 HQ output — the
@@ -336,6 +336,52 @@ week.
 - **Don't:** science-cliché iconography (atoms, beakers, gears, lightbulbs,
   brain outlines). We are not stock.
 
+### Logo — Construction Rules (Locked as of v1.1)
+
+The primary wordmark is a **three-part lockup** with a fixed color role
+for every part. Deviation is a rebrand.
+
+**Parts:**
+
+1. **`ELI`** — set in Space Grotesk 700, tight (-4% tracking), in
+   **Chalk White** (`#FAFAF5`) on dark surfaces or **Off-Black** (`#0E0E12`)
+   on light surfaces. The cream/white does the weight.
+2. **Hazard-pink panel hugging the `5`** — a solid Hazard Pink (`#FF2E63`)
+   rectangle rotated **-2°**, with the `5` **knocked out to the surface
+   color** (i.e. the `5` is transparent / same color as whatever sits
+   behind the lockup). This is the load-bearing personality moment.
+3. **`HQ` stamp** — a Chalk Yellow (`#F5E663`) rectangle with Off-Black
+   `HQ` set in Space Grotesk 700, tracked +20%, sitting at the cap-height
+   line. Third color, small. Never pink. Never cream.
+
+**Rules:**
+
+- The `5` is **always** knocked out to the surface — you must pass the
+  correct background color when you render the mark. On photos or
+  gradients, place the lockup over a solid color card first.
+- **Color roles are fixed.** ELI=cream/black (depending on surface) ·
+  panel=Hazard Pink · 5=surface · HQ stamp=Chalk Yellow. Swapping any
+  role is off-brand.
+- **Rotation is fixed.** Panel tilts -2°. HQ stamp sits flat.
+- **HQ is a stamp, not a co-star.** Its cap-height is ~14% of the ELI
+  cap-height. Don't resize it up for balance.
+- **Minimum legibility size:** at cap-heights below ~14px the HQ stamp
+  stops reading cleanly — below that, use the **Monogram** alone.
+
+**Avatar / monogram variants (all use the same knockout construction):**
+
+| Variant | Tile | 5 | Use |
+| --- | --- | --- | --- |
+| `pink` (primary) | Hazard Pink | surface color (knockout) | Default avatar everywhere |
+| `black` (reserved) | Off-Black | Hazard Pink | Pinned stories, temporary events only |
+| `cream` (secondary) | Paper Cream | Hazard Pink | Podcast covers, warm-ground contexts |
+
+**Canonical assets live in `/assets`:**
+
+- `logo-wordmark.svg` — full lockup
+- `monogram-5-pink.svg` — primary avatar
+- `monogram-5-black.svg` — reserved variant
+
 ### Color Palette
 
 We own a palette that is emphatically **not teal and not yellow**. The
@@ -367,6 +413,7 @@ with the primaries. Don't use more than two secondaries in a single frame.
 | Signal Orange    | `#FF8A1F` | Biology, "why does X do that?" — warm, organic. |
 | Beaker Blue      | `#2EC4FF` | Chemistry, tech. Electric, not Kurzgesagt-teal. |
 | Moss Green       | `#4F8A3C` | Nature-is-unhinged. Grounded, earthy foil.      |
+| **Chalk Yellow** | `#F5E663` | **Logo HQ stamp (reserved role).** Not a pillar color — do not assign to a topic. |
 
 #### Neutrals
 
@@ -699,12 +746,17 @@ Snapchat, Reddit (r/eli5hq — dormant claim), the `.com` and `.co` domains.
 
 ### Profile Image Direction
 
-One image, every platform. The monogram mark: the `5` on a solid Hazard
-Pink (`#FF2E63`) tile. Off-Black `5`. No wordmark on the avatar — too small
-to read. The pink tile is the recognition asset at thumbnail-strip size.
+One image, every platform. The **pink monogram** (`monogram-5-pink.svg`):
+Hazard Pink (`#FF2E63`) tile with the `5` **knocked out to the surface
+color** — matching the wordmark's construction. This is the recognition
+asset at thumbnail-strip size. No wordmark on the avatar — the HQ stamp
+won't read at profile-rail dimensions.
 
-Alternate (only for pinned stories / temporary events): Off-Black tile with
-Hazard Pink `5`. Never invert to Paper Cream — loses punch in the rail.
+Alternate (only for pinned stories / temporary events): the **black
+monogram** (`monogram-5-black.svg`) — Off-Black tile with a Hazard Pink
+`5`. Never invert to Paper Cream for the default avatar — loses punch in
+the rail. (Paper Cream variant is reserved for podcast covers and warm-
+ground contexts, not the main profile.)
 
 ### Bios — Ready to Paste
 
@@ -838,8 +890,10 @@ Print these. Tape them to the monitor.
 - The four-beat formula
 - No-talking-head rule
 - Brand primary color (Hazard Pink `#FF2E63`) + anchor (Off-Black `#0E0E12`)
+- **Chalk Yellow `#F5E663`** — reserved for the logo HQ stamp only. Not a pillar color.
 - Typography pair (Space Grotesk + Inter)
 - The name "ELI5 HQ" and the logo's load-bearing `5`
+- **Logo construction rules (v1.1):** three-part lockup · cream/black ELI · Hazard-Pink panel with knockout 5 · Chalk-Yellow HQ stamp · panel tilts -2°. See §3 "Logo — Construction Rules."
 
 **Flexible** (the team can iterate without a brief revision):
 
@@ -892,7 +946,7 @@ If all 15 pass: ship it.
 ## Appendix — Quick Reference Card
 
 - **Primary color:** Hazard Pink `#FF2E63` · **Anchor:** Off-Black `#0E0E12`
-  · **Warm alt:** Paper Cream `#F5F1E8`
+  · **Warm alt:** Paper Cream `#F5F1E8` · **Logo HQ stamp:** Chalk Yellow `#F5E663`
 - **Display font:** Space Grotesk 700 · **Body font:** Inter 600
 - **Handle:** `@eli5hq` (fallback `@eli5.hq`)
 - **Formula:** dumb premise (0–3s) → whiplash pivot (3–8s) → real payoff
@@ -901,4 +955,13 @@ If all 15 pass: ship it.
 - **One-line identity:** "STEM explained like you're 5. the science is still
   for grown-ups."
 
-**Owner:** Steve Harmeyer · **Version:** 1.0 · **Last updated:** 2026-04-22
+**Owner:** Steve Harmeyer · **Version:** 1.1 · **Last updated:** 2026-04-23
+
+## Changelog
+
+- **v1.1 (2026-04-23)** — Locked logo construction rules. Added Chalk
+  Yellow (`#F5E663`) as the reserved HQ-stamp color. Updated profile
+  image direction to match the knockout construction. Canonical SVG
+  assets live in `/assets`.
+- **v1.0 (2026-04-22)** — Initial bible. Voice, palette, typography,
+  editorial formula, channel kit, governance.

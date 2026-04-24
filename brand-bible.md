@@ -1,8 +1,8 @@
-# ELI5 HQ — Brand Bible v1.1
+# ELI5 HQ — Brand Bible v1.2
 
 **Status:** Active
 **Owner:** Steve Harmeyer
-**Date:** 2026-04-23
+**Date:** 2026-04-24
 **Governing brief:** `docs/superpowers/specs/2026-04-22-eli5hq-brand-brief.md`
 
 This bible is the working spec for everyone who touches ELI5 HQ output — the
@@ -528,7 +528,9 @@ Every video hits every beat. No exceptions.
 | **4. Stinger**      | last 2–5s   | Callback joke, wait-what, or absurdist bow. Shareable moment.            | Earnest thank-you. "Follow for more."       |
 
 **Overall video length targets:** 22–45s is the sweet spot. 15s for
-single-fact drops. 60s is the ceiling — if it needs more, it's a two-parter.
+single-fact drops. 60s is the soft target — aim here. 90s is the hard
+ceiling (Instagram Reels' cap) — if it needs more than 90s, it's a
+two-parter.
 
 ### Three Fully-Written Sample Scripts
 
@@ -927,7 +929,7 @@ answer is "no," don't ship.
 2. ☐ Is there a clear whiplash pivot by second 8?
 3. ☐ Is the actual science accurate, with a source you could point to if asked?
 4. ☐ Is every technical term translated in plain language on first use?
-5. ☐ Is the video between 15 and 60 seconds?
+5. ☐ Is the video between 15 and 90 seconds (target ≤ 60s)?
 6. ☐ Does Hazard Pink appear on screen at least once?
 7. ☐ Are captions burned in, styled in our type (Inter 600+), not CapCut default?
 8. ☐ Is there a stinger — a callback, joke, or "wait what" — in the last 2–5s?
@@ -951,14 +953,18 @@ If all 15 pass: ship it.
 - **Handle:** `@eli5hq` (fallback `@eli5.hq`)
 - **Formula:** dumb premise (0–3s) → whiplash pivot (3–8s) → real payoff
   (8–45s) → stinger (last 2–5s)
-- **Length target:** 22–45s · **Ceiling:** 60s
+- **Length target:** 22–45s · **Soft target:** 60s · **Hard ceiling:** 90s
 - **One-line identity:** "STEM explained like you're 5. the science is still
   for grown-ups."
 
-**Owner:** Steve Harmeyer · **Version:** 1.1 · **Last updated:** 2026-04-23
+**Owner:** Steve Harmeyer · **Version:** 1.2 · **Last updated:** 2026-04-24
 
 ## Changelog
 
+- **v1.2 (2026-04-24)** — Relaxed duration cap. Soft target remains 60s
+  (the mission's "under a minute" framing). Hard ceiling moves from 60s
+  to 90s, matching Instagram Reels' limit. Videos longer than 90s become
+  two-parters.
 - **v1.1 (2026-04-23)** — Locked logo construction rules. Added Chalk
   Yellow (`#F5E663`) as the reserved HQ-stamp color. Updated profile
   image direction to match the knockout construction. Canonical SVG

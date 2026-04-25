@@ -723,6 +723,216 @@
     </p>
   </div>
 </div></section>
+      <div class="zigzag my-8" aria-hidden="true"></div>
+
+      <section id="frame-anatomy" class="py-16"><div class="mx-auto max-w-6xl">
+  <div class="mb-8 flex items-baseline gap-4">
+    <h2 class="heading-wonk font-display text-4xl font-bold text-chalk-white md:text-5xl">
+      Frame anatomy
+    </h2>
+    <span class="font-display text-xs font-bold uppercase tracking-[0.2em] text-hazard-pink">
+      9:16 · 1080×1920 · three locked zones
+    </span>
+  </div>
+
+  <div class="grid gap-8 md:grid-cols-[280px_1fr] md:items-start">
+    <!-- Visual diagram of the 9:16 frame -->
+    <div class="relative mx-auto w-[240px]">
+      <div class="relative w-full overflow-hidden border-2 border-chalk-white bg-off-black" style="aspect-ratio: 9/16;">
+        <div class="absolute inset-x-0 top-0 flex h-[14%] items-center justify-center border-b border-dashed border-hazard-pink bg-hazard-pink/10">
+          <span class="font-display text-[10px] font-bold uppercase tracking-widest text-hazard-pink">Top 14% · chrome</span>
+        </div>
+        <div class="absolute inset-x-0 top-[14%] flex h-[64%] items-center justify-center bg-off-black">
+          <span class="font-display text-[10px] font-bold uppercase tracking-widest text-chalk-yellow">Center 64% · captions</span>
+        </div>
+        <div class="absolute inset-x-0 bottom-0 flex h-[22%] items-center justify-center border-t border-dashed border-smoke-500 bg-smoke-900">
+          <span class="font-display text-[10px] font-bold uppercase tracking-widest text-smoke-200">Bottom 22% · UI safe</span>
+        </div>
+      </div>
+    </div>
+
+    <ul class="space-y-4 font-body text-sm text-smoke-200">
+      <li class="flex gap-3">
+        <span class="inline-block w-4 h-4 bg-hazard-pink flex-shrink-0 mt-0.5"></span>
+        <span><strong class="text-chalk-white">Top 14% — chrome safe zone.</strong> Holds the wordmark on Beats 1–3 (cream/black ELI + hazard-pink panel with knockout 5 + chalk-yellow HQ stamp, ~14px). No caption content crosses into this band.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="inline-block w-4 h-4 bg-chalk-yellow flex-shrink-0 mt-0.5"></span>
+        <span><strong class="text-chalk-white">Center 64% — caption region.</strong> Holds all sticker pills. Each pill rotates between −2° and +2°, picked deterministically from a hash of the pill's text — same line always tilts the same way across re-renders.</span>
+      </li>
+      <li class="flex gap-3">
+        <span class="inline-block w-4 h-4 bg-smoke-500 flex-shrink-0 mt-0.5"></span>
+        <span><strong class="text-chalk-white">Bottom 22% — platform UI safe zone.</strong> Reserved for usernames, CTAs, caption trays. Empty on Beats 1–3. Beat 4 hosts the bottom-dominant wordmark + small @eli5hq handle here.</span>
+      </li>
+    </ul>
+  </div>
+
+  <p class="mt-8 border-l-4 border-hazard-pink bg-off-black p-4 font-body text-sm text-smoke-200">
+    <strong class="text-hazard-pink">Hazard Pink invariant.</strong> Every video must include at least one Hazard Pink caption pill. If pill-color assignment doesn't naturally produce one, the renderer forces pink onto Beat 2's first pill (the pivot reads loudest in pink).
+  </p>
+</div></section>
+      <div class="zigzag my-8" aria-hidden="true"></div>
+
+      <section id="cue-verbs" class="py-16"><div class="mx-auto max-w-6xl">
+  <div class="mb-8 flex items-baseline gap-4">
+    <h2 class="heading-wonk font-display text-4xl font-bold text-chalk-white md:text-5xl">
+      Cue verb vocabulary
+    </h2>
+    <span class="font-display text-xs font-bold uppercase tracking-[0.2em] text-lab-lime">
+      eight verbs · prompt-teachable · auto-derivable
+    </span>
+  </div>
+
+  <p class="mb-8 max-w-3xl font-body text-base text-smoke-200">
+    The motion principles ("type slams, rotates, scales", "every key word
+    gets its own entrance", "snap in, snap out") cash out as eight named
+    cue verbs that compositions implement and prompts teach. Most are
+    auto-derived from text content (ALL-CAPS, trailing punctuation, italic
+    markdown). Hand-authored cues are reserved for intent the text alone
+    can't express.
+  </p>
+
+  <div class="grid gap-4 md:grid-cols-2">
+    <div class="border border-smoke-900 bg-off-black p-5">
+      <p class="font-display text-lg font-bold text-hazard-pink">slam</p>
+      <p class="mt-2 font-body text-sm text-smoke-200">Word punches in: scale 1.4→1.0, ±3° rotation overshoot, 1px land-shake. ALL-CAPS hook words and pivot punches.</p>
+    </div>
+    <div class="border border-smoke-900 bg-off-black p-5">
+      <p class="font-display text-lg font-bold text-lab-lime">scale-bounce</p>
+      <p class="mt-2 font-body text-sm text-smoke-200">Word grows past target then settles (1.0→1.25→1.0). Question marks and giant numbers that "refuse to fit the frame."</p>
+    </div>
+    <div class="border border-smoke-900 bg-off-black p-5">
+      <p class="font-display text-lg font-bold text-plasma-violet">zoom-punch</p>
+      <p class="mt-2 font-body text-sm text-smoke-200">Whole-frame brief zoom (1.0→1.05→1.0) anchored on a word. Sentence-final reveals in Beat 3.</p>
+    </div>
+    <div class="border border-smoke-900 bg-off-black p-5">
+      <p class="font-display text-lg font-bold text-hazard-pink">circle-mark</p>
+      <p class="mt-2 font-body text-sm text-smoke-200">Hand-drawn hazard-pink circle traces around a word. Single out a real term (e.g., <em>cavitation</em>) in the payoff.</p>
+    </div>
+    <div class="border border-smoke-900 bg-off-black p-5">
+      <p class="font-display text-lg font-bold text-hazard-pink">underline-scribble</p>
+      <p class="mt-2 font-body text-sm text-smoke-200">Wobbly hazard-pink underline draws beneath a word. Italic-emphasis equivalent.</p>
+    </div>
+    <div class="border border-smoke-900 bg-off-black p-5">
+      <p class="font-display text-lg font-bold text-hazard-pink">x-out</p>
+      <p class="mt-2 font-body text-sm text-smoke-200">Pink X slams over a word, word fades to 50%. The "X'd out" rejection pattern (e.g., "is it grandma? ✗").</p>
+    </div>
+    <div class="border border-smoke-900 bg-off-black p-5">
+      <p class="font-display text-lg font-bold text-chalk-yellow">sticker-drop</p>
+      <p class="mt-2 font-body text-sm text-smoke-200">Small sticker (arrow / exclamation / question) drops next to a word. One per video max.</p>
+    </div>
+    <div class="border border-smoke-900 bg-off-black p-5">
+      <p class="font-display text-lg font-bold text-beaker-blue">whip-cut</p>
+      <p class="mt-2 font-body text-sm text-smoke-200">Pill-level entrance with motion-blur, no scale or rotate. The first pill of Beat 2 — the structural pivot.</p>
+    </div>
+  </div>
+</div></section>
+      <div class="zigzag my-8" aria-hidden="true"></div>
+
+      <section id="bg-matrix" class="py-16"><div class="mx-auto max-w-6xl">
+  <div class="mb-8 flex items-baseline gap-4">
+    <h2 class="heading-wonk font-display text-4xl font-bold text-chalk-white md:text-5xl">
+      Per-beat background matrix
+    </h2>
+    <span class="font-display text-xs font-bold uppercase tracking-[0.2em] text-signal-orange">
+      5 pillars × 4 beats · fixed lookup
+    </span>
+  </div>
+
+  <p class="mb-8 max-w-3xl font-body text-base text-smoke-200">
+    Beat 1 reflects the pillar's preferred warm/dark BG; Beat 2 cuts to
+    dark to register the whiplash pivot; Beats 3–4 share the pillar accent
+    full-bleed (Beat 4 is structurally a sub-beat of the payoff). Pillar
+    accent colors stay as caption-pill text and sticker-decoration; only
+    background assignment is governed by this matrix.
+  </p>
+
+  <div class="overflow-x-auto border border-smoke-900">
+    <table class="w-full border-collapse font-body text-sm">
+      <thead>
+        <tr class="bg-off-black">
+          <th class="border-b border-smoke-900 p-3 text-left font-display text-xs font-bold uppercase tracking-widest text-smoke-500">Pillar</th>
+          <th class="border-b border-smoke-900 p-3 text-left font-display text-xs font-bold uppercase tracking-widest text-smoke-500">Beat 1</th>
+          <th class="border-b border-smoke-900 p-3 text-left font-display text-xs font-bold uppercase tracking-widest text-smoke-500">Beat 2</th>
+          <th class="border-b border-smoke-900 p-3 text-left font-display text-xs font-bold uppercase tracking-widest text-smoke-500">Beat 3</th>
+          <th class="border-b border-smoke-900 p-3 text-left font-display text-xs font-bold uppercase tracking-widest text-smoke-500">Beat 4</th>
+        </tr>
+      </thead>
+      <tbody class="text-chalk-white">
+        <tr>
+          <td class="border-b border-smoke-900 p-3 font-bold text-hazard-pink">why</td>
+          <td class="border-b border-smoke-900 p-3"><span class="inline-block w-3 h-3 mr-2 align-middle" style="background:#F5F1E8"></span>Paper Cream</td>
+          <td class="border-b border-smoke-900 p-3"><span class="inline-block w-3 h-3 mr-2 align-middle" style="background:#0E0E12; border:1px solid #6B6B78"></span>Off-Black</td>
+          <td class="border-b border-smoke-900 p-3"><span class="inline-block w-3 h-3 mr-2 align-middle" style="background:#FF8A1F"></span>Signal Orange</td>
+          <td class="border-b border-smoke-900 p-3"><span class="inline-block w-3 h-3 mr-2 align-middle" style="background:#FF8A1F"></span>Signal Orange</td>
+        </tr>
+        <tr>
+          <td class="border-b border-smoke-900 p-3 font-bold text-lab-lime">math</td>
+          <td class="border-b border-smoke-900 p-3"><span class="inline-block w-3 h-3 mr-2 align-middle" style="background:#0E0E12; border:1px solid #6B6B78"></span>Off-Black</td>
+          <td class="border-b border-smoke-900 p-3"><span class="inline-block w-3 h-3 mr-2 align-middle" style="background:#1A1A20; border:1px solid #6B6B78"></span>Smoke 900</td>
+          <td class="border-b border-smoke-900 p-3"><span class="inline-block w-3 h-3 mr-2 align-middle" style="background:#C6F24E"></span>Lab Lime</td>
+          <td class="border-b border-smoke-900 p-3"><span class="inline-block w-3 h-3 mr-2 align-middle" style="background:#C6F24E"></span>Lab Lime</td>
+        </tr>
+        <tr>
+          <td class="border-b border-smoke-900 p-3 font-bold text-beaker-blue">tech</td>
+          <td class="border-b border-smoke-900 p-3"><span class="inline-block w-3 h-3 mr-2 align-middle" style="background:#0E0E12; border:1px solid #6B6B78"></span>Off-Black</td>
+          <td class="border-b border-smoke-900 p-3"><span class="inline-block w-3 h-3 mr-2 align-middle" style="background:#1A1A20; border:1px solid #6B6B78"></span>Smoke 900</td>
+          <td class="border-b border-smoke-900 p-3"><span class="inline-block w-3 h-3 mr-2 align-middle" style="background:#2EC4FF"></span>Beaker Blue</td>
+          <td class="border-b border-smoke-900 p-3"><span class="inline-block w-3 h-3 mr-2 align-middle" style="background:#2EC4FF"></span>Beaker Blue</td>
+        </tr>
+        <tr>
+          <td class="border-b border-smoke-900 p-3 font-bold text-moss-green">nature</td>
+          <td class="border-b border-smoke-900 p-3"><span class="inline-block w-3 h-3 mr-2 align-middle" style="background:#F5F1E8"></span>Paper Cream</td>
+          <td class="border-b border-smoke-900 p-3"><span class="inline-block w-3 h-3 mr-2 align-middle" style="background:#0E0E12; border:1px solid #6B6B78"></span>Off-Black</td>
+          <td class="border-b border-smoke-900 p-3"><span class="inline-block w-3 h-3 mr-2 align-middle" style="background:#4F8A3C"></span>Moss Green</td>
+          <td class="border-b border-smoke-900 p-3"><span class="inline-block w-3 h-3 mr-2 align-middle" style="background:#4F8A3C"></span>Moss Green</td>
+        </tr>
+        <tr>
+          <td class="p-3 font-bold text-plasma-violet">space</td>
+          <td class="p-3"><span class="inline-block w-3 h-3 mr-2 align-middle" style="background:#0E0E12; border:1px solid #6B6B78"></span>Off-Black</td>
+          <td class="p-3"><span class="inline-block w-3 h-3 mr-2 align-middle" style="background:#1A1A20; border:1px solid #6B6B78"></span>Smoke 900</td>
+          <td class="p-3"><span class="inline-block w-3 h-3 mr-2 align-middle" style="background:#7A3BFF"></span>Plasma Violet</td>
+          <td class="p-3"><span class="inline-block w-3 h-3 mr-2 align-middle" style="background:#7A3BFF"></span>Plasma Violet</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div></section>
+      <div class="zigzag my-8" aria-hidden="true"></div>
+
+      <section id="stinger-frame" class="py-16"><div class="mx-auto max-w-6xl">
+  <div class="mb-8 flex items-baseline gap-4">
+    <h2 class="heading-wonk font-display text-4xl font-bold text-chalk-white md:text-5xl">
+      Beat 4 stinger frame
+    </h2>
+    <span class="font-display text-xs font-bold uppercase tracking-[0.2em] text-hazard-pink">
+      shareable moment · breaks the chrome
+    </span>
+  </div>
+
+  <ul class="grid gap-4 font-body text-sm text-smoke-200 md:grid-cols-2">
+    <li class="border border-smoke-900 bg-off-black p-5">
+      <strong class="text-chalk-white block mb-2">Background continues from Beat 3</strong>
+      Same pillar accent, no cut. The stinger reads as a sub-beat of the payoff.
+    </li>
+    <li class="border border-smoke-900 bg-off-black p-5">
+      <strong class="text-chalk-white block mb-2">Wordmark relocates to bottom</strong>
+      Centered, ~28px (~2× chrome scale). The handle <span class="font-mono text-hazard-pink">@eli5hq</span> appears in small caps above it.
+    </li>
+    <li class="border border-smoke-900 bg-off-black p-5">
+      <strong class="text-chalk-white block mb-2">Caption pills stack vertically</strong>
+      Sized larger than other beats. Every word auto-slams; the final word auto-scale-bounces.
+    </li>
+    <li class="border border-smoke-900 bg-off-black p-5">
+      <strong class="text-chalk-white block mb-2">Optional rubber-stamp sticker</strong>
+      Chalk-yellow stamp rotated −8°, ≤32 chars, bottom-right of caption region. Examples: "OUT OF ORDER", "5/5 NO NOTES", "FIRST SHUFFLER OF THIS EXACT DECK — 2026."
+    </li>
+  </ul>
+
+  <p class="mt-8 border-l-4 border-hazard-pink bg-off-black p-4 font-body text-sm text-smoke-200">
+    <strong class="text-hazard-pink">"Follow for more" remains the documented fail state.</strong> The stinger is a callback joke or absurdist bow, not an earnest CTA.
+  </p>
+</div></section>
     </main>
 
     <footer class="mt-20 border-t border-smoke-900 bg-off-black px-6 py-12 md:px-12">
@@ -731,11 +941,11 @@
       <div class="wordmark" style="--surface:#0E0E12; color:#FAFAF5; font-size: 24px;">
         <span>ELI</span><span class="wordmark__panel"><span class="wordmark__five">5</span></span><span class="wordmark__stamp">HQ</span>
       </div>
-      <p class="mt-3 font-display text-xs font-bold uppercase tracking-widest text-smoke-500">Brand Guide v1.2</p>
+      <p class="mt-3 font-display text-xs font-bold uppercase tracking-widest text-smoke-500">Brand Guide v1.3</p>
       <p class="mt-2 font-body text-sm text-smoke-500">
         Source of truth:
         <a href="brand-bible.md" class="underline decoration-hazard-pink decoration-2 underline-offset-4 hover:text-chalk-white">brand-bible.md</a>
-        · last updated 2026-04-23
+        · last updated 2026-04-25
       </p>
     </div>
     <p class="mt-6 max-w-md font-body text-xs text-smoke-500 md:mt-0 md:text-right">

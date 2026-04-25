@@ -1,8 +1,8 @@
-# ELI5 HQ — Brand Bible v1.2
+# ELI5 HQ — Brand Bible v1.3
 
 **Status:** Active
 **Owner:** Steve Harmeyer
-**Date:** 2026-04-24
+**Date:** 2026-04-25
 **Governing brief:** `docs/superpowers/specs/2026-04-22-eli5hq-brand-brief.md`
 
 This bible is the working spec for everyone who touches ELI5 HQ output — the
@@ -419,10 +419,10 @@ with the primaries. Don't use more than two secondaries in a single frame.
 
 | Name        | Hex       | Use                                        |
 | ----------- | --------- | ------------------------------------------ |
-| Smoke 900   | `#1A1A20` | Dark surfaces slightly above Off-Black     |
-| Smoke 500   | `#6B6B78` | Secondary text, quiet UI, diagram lines    |
-| Smoke 200   | `#C9C6BD` | Dividers on Paper Cream                    |
-| Chalk White | `#FAFAF5` | Caption text on dark. Never pure `#FFFFFF`. |
+| Smoke 900   | `#1A1A20` | Sub-black background. Used as Beat 2 BG for dark-primary pillars to register a visible whiplash cut from Beat 1's Off-Black. |
+| Smoke 500   | `#6B6B78` | Muted neutral for inactive UI metadata only. Never as caption-pill BG. |
+| Smoke 200   | `#C9C6BD` | Warm neutral fallback where Paper Cream feels too saturated. Rare. Also dividers on Paper Cream. |
+| Chalk White | `#FAFAF5` | Caption-pill body color on dark backgrounds. Slightly warm white that pairs with cream and yellow without competing with hazard pink. Never pure `#FFFFFF`. |
 
 #### Usage Rules
 
@@ -473,6 +473,19 @@ survive the phone scroll.
 Display substitute = **Archivo Black** or **Bagel Fat One**. Body substitute
 = **Manrope** or **DM Sans**. Do not mix more than one display + one text.
 
+### Frame Anatomy
+
+Every video frame is a 9:16 (1080×1920) canvas with three locked zones:
+
+- **Top 14% — chrome safe zone.** Holds the wordmark on Beats 1–3 (cream/black `ELI` + hazard-pink panel with knockout `5` + chalk-yellow `HQ` stamp, ~14px font-size). No caption content crosses into this band.
+- **Center 64% — caption region.** Holds all sticker pills. Each pill rotates between −2° and +2°, picked deterministically from a hash of the pill's text so the same line always tilts the same way across re-renders.
+- **Bottom 22% — platform UI safe zone.** Reserved for usernames, CTAs, and caption trays. Empty on Beats 1–3. Beat 4 hosts the bottom-dominant wordmark + small `@eli5hq` handle here.
+
+**Hazard Pink invariant.** Every video must include at least one Hazard
+Pink caption pill. If pill-color assignment doesn't naturally produce one,
+the renderer forces pink onto Beat 2's first pill (the pivot reads loudest
+in pink).
+
 ### Art-Style Mood Direction
 
 - **Flat-vector with personality.** Hard shapes. Visible "drawn by a human"
@@ -512,6 +525,25 @@ Display substitute = **Archivo Black** or **Bagel Fat One**. Body substitute
 - **No talking head, ever.** If a human appears, it's a silhouette or a
   hand drawing on a chalkboard — never a face.
 
+#### Cue Verb Vocabulary
+
+The motion principles above ("type slams, rotates, scales", "every key word
+gets its own entrance", "snap in, snap out") cash out as eight named cue
+verbs that compositions can implement and prompts can teach:
+
+- **slam** — word punches in: scale 1.4→1.0, ±3° rotation overshoot, 1px land-shake. Use for ALL-CAPS hook words and pivot punches.
+- **scale-bounce** — word grows past target then settles (1.0→1.25→1.0). Use for question marks and giant numbers that "refuse to fit the frame."
+- **zoom-punch** — whole-frame brief zoom (1.0→1.05→1.0) anchored on a word. Use for sentence-final reveals in Beat 3.
+- **circle-mark** — hand-drawn hazard-pink circle traces around a word. Use to single out a real term (e.g., *cavitation*) in the payoff.
+- **underline-scribble** — wobbly hazard-pink underline draws beneath a word. Use for italic-emphasis equivalents.
+- **x-out** — pink X slams over a word, word fades to 50%. Use for the "X'd out" rejection pattern (e.g., "is it grandma? ✗").
+- **sticker-drop** — small sticker (arrow / exclamation / question) drops next to a word. Use sparingly; one per video max.
+- **whip-cut** — pill-level entrance with motion-blur, no scale or rotate. Use for the first pill of Beat 2 — the structural pivot.
+
+Implementations may auto-derive most verbs from text content (ALL-CAPS,
+trailing punctuation, italic markdown). Hand-authored cues are reserved for
+intent that the text alone can't express — circle-mark, sticker-drop.
+
 ---
 
 ## 4. Editorial System
@@ -531,6 +563,37 @@ Every video hits every beat. No exceptions.
 single-fact drops. 60s is the soft target — aim here. 90s is the hard
 ceiling (Instagram Reels' cap) — if it needs more than 90s, it's a
 two-parter.
+
+### Per-Beat Background Matrix
+
+The four beats render against a fixed 5×4 lookup table — pillar × beat
+index. Beat 1 reflects the pillar's preferred warm/dark BG; Beat 2 cuts to
+dark to register the whiplash pivot; Beats 3–4 share the pillar accent
+full-bleed (no internal cut between them — Beat 4 is structurally a
+sub-beat of the payoff).
+
+| Pillar  | Beat 1        | Beat 2     | Beat 3            | Beat 4            |
+|---------|---------------|------------|-------------------|-------------------|
+| why     | Paper Cream   | Off-Black  | Signal Orange     | Signal Orange     |
+| math    | Off-Black     | Smoke 900  | Lab Lime          | Lab Lime          |
+| tech    | Off-Black     | Smoke 900  | Beaker Blue       | Beaker Blue       |
+| nature  | Paper Cream   | Off-Black  | Moss Green        | Moss Green        |
+| space   | Off-Black     | Smoke 900  | Plasma Violet     | Plasma Violet     |
+
+The pillar deep-spec accent colors stay as caption-pill text colors and
+sticker-decoration colors; only background assignment is governed by this
+matrix.
+
+#### Beat 4 Stinger Frame
+
+The stinger frame breaks the chrome convention from Beats 1–3 to mark the
+shareable moment:
+
+- Background continues from Beat 3 — same pillar accent, no cut.
+- Wordmark relocates from top to bottom (centered, ~28px, ~2× the chrome scale). The handle `@eli5hq` appears in small caps above it.
+- Caption pills stack vertically in the center band, sized larger than other beats. Every word auto-slams; the final word auto-scale-bounces.
+- Optional **stamp** — a chalk-yellow rubber-stamp sticker rotated −8°, ≤32 chars, positioned bottom-right of the caption region. The three sample stinger scripts in §4 all exhibit this pattern: "OUT OF ORDER", "5/5 NO NOTES", "FIRST SHUFFLER OF THIS EXACT DECK — 2026."
+- **"Follow for more" remains the documented fail state** — the stinger is a callback joke or absurdist bow, not an earnest CTA.
 
 ### Three Fully-Written Sample Scripts
 
@@ -628,8 +691,10 @@ Caption: `the platypus is evolution's chaos draft. no notes. #biology
 - **Hook patterns (from Section 2):** #1, #2, #10.
 - **Caption formula:** "why does [everyday thing] do [weird thing]? the
   real answer is unhinged."
-- **Visual treatment:** Paper Cream or Off-Black BG + **Signal Orange**
-  as the default accent. Everyday objects rendered as slightly-cute
+- **Visual treatment:** Backgrounds governed by the per-beat BG matrix
+  above (Paper Cream → Off-Black → Signal Orange → Signal Orange).
+  **Signal Orange** is the caption-pill text accent and sticker-decoration
+  color across all four beats. Everyday objects rendered as slightly-cute
   stickers. Cross-sections are your friend.
 - **Target viewer moment:** "huh. I literally do this every day."
 
@@ -640,7 +705,9 @@ Caption: `the platypus is evolution's chaos draft. no notes. #biology
   monkeys.
 - **Hook patterns:** #3, #4, #11.
 - **Caption formula:** "[insane number]. that's it. that's the post."
-- **Visual treatment:** Off-Black BG + **Lab Lime** accent. Giant numbers
+- **Visual treatment:** Backgrounds governed by the per-beat BG matrix
+  (Off-Black → Smoke 900 → Lab Lime → Lab Lime). **Lab Lime** is the
+  caption-pill text accent and sticker-decoration color. Giant numbers
   doing all the work. Counters, scales, type that refuses to fit the frame.
 - **Target viewer moment:** screenshot-and-send-to-a-friend.
 
@@ -652,9 +719,12 @@ Caption: `the platypus is evolution's chaos draft. no notes. #biology
 - **Hook patterns:** #5, #9, #12.
 - **Caption formula:** "how [tech thing] actually works, explained like
   you're 5 but the answer isn't baby."
-- **Visual treatment:** Off-Black BG + **Beaker Blue** accent. Circuitry
-  rendered as sticker-diagrams. Anthropomorphic little chip/router
-  characters. Occasional CRT-flicker texture for stingers only.
+- **Visual treatment:** Backgrounds governed by the per-beat BG matrix
+  (Off-Black → Smoke 900 → Beaker Blue → Beaker Blue). **Beaker Blue**
+  is the caption-pill text accent and sticker-decoration color.
+  Circuitry rendered as sticker-diagrams. Anthropomorphic little
+  chip/router characters. Occasional CRT-flicker texture for stingers
+  only.
 - **Target viewer moment:** "oh that's what that is."
 
 #### Pillar 4 — "Nature is unhinged"
@@ -665,8 +735,11 @@ Caption: `the platypus is evolution's chaos draft. no notes. #biology
 - **Hook patterns:** #6, #8, #12.
 - **Caption formula:** "[animal] is [doing cursed thing] and nobody talks
   about it."
-- **Visual treatment:** Moss Green or Paper Cream BG + **Signal Orange**
-  or **Plasma Violet** accent depending on creature vibe. Creature as a
+- **Visual treatment:** Backgrounds governed by the per-beat BG matrix
+  (Paper Cream → Off-Black → Moss Green → Moss Green). **Moss Green** is
+  the caption-pill text accent and sticker-decoration color; **Signal
+  Orange** or **Plasma Violet** may layer in as secondary
+  sticker-decoration depending on creature vibe. Creature as a
   loveable-cursed sticker with big eyes and a stat sheet.
 - **Target viewer moment:** "wait that's not fake?"
 
@@ -678,9 +751,11 @@ Caption: `the platypus is evolution's chaos draft. no notes. #biology
 - **Hook patterns:** #4, #6, #7.
 - **Caption formula:** "the universe is [specific unhinged fact] and
   we're just here."
-- **Visual treatment:** Off-Black BG + **Plasma Violet** accent. Scale
-  comparisons are the whole genre — always include a reference scale
-  (human, earth, sun, galaxy). Stars as tiny dots; never render a
+- **Visual treatment:** Backgrounds governed by the per-beat BG matrix
+  (Off-Black → Smoke 900 → Plasma Violet → Plasma Violet). **Plasma
+  Violet** is the caption-pill text accent and sticker-decoration color.
+  Scale comparisons are the whole genre — always include a reference
+  scale (human, earth, sun, galaxy). Stars as tiny dots; never render a
   photoreal galaxy. Cursed awe only.
 - **Target viewer moment:** existential-chuckle.
 
@@ -957,10 +1032,19 @@ If all 15 pass: ship it.
 - **One-line identity:** "STEM explained like you're 5. the science is still
   for grown-ups."
 
-**Owner:** Steve Harmeyer · **Version:** 1.2 · **Last updated:** 2026-04-24
+**Owner:** Steve Harmeyer · **Version:** 1.3 · **Last updated:** 2026-04-25
 
 ## Changelog
 
+- **v1.3 (2026-04-25)** — Frame grammar + cue DSL. Added Frame Anatomy
+  (top 14% chrome / center 64% caption / bottom 22% safe-zone) with the
+  Hazard Pink invariant. Added the Cue Verb Vocabulary (eight named
+  motion verbs: slam, scale-bounce, zoom-punch, circle-mark,
+  underline-scribble, x-out, sticker-drop, whip-cut). Added the Per-Beat
+  Background Matrix (5 pillars × 4 beats lookup) and the Beat 4 Stinger
+  Frame layout (bottom-dominant wordmark, optional rubber-stamp sticker).
+  Updated Neutrals descriptions and per-pillar Visual treatments to point
+  at the matrix.
 - **v1.2 (2026-04-24)** — Relaxed duration cap. Soft target remains 60s
   (the mission's "under a minute" framing). Hard ceiling moves from 60s
   to 90s, matching Instagram Reels' limit. Videos longer than 90s become

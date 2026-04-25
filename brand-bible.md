@@ -3,6 +3,7 @@
 **Status:** Active
 **Owner:** Steve Harmeyer
 **Date:** 2026-04-25
+**Version:** 1.4
 **Governing brief:** `docs/superpowers/specs/2026-04-22-eli5hq-brand-brief.md`
 
 This bible is the working spec for everyone who touches ELI5 HQ output — the
@@ -492,11 +493,21 @@ in pink).
   quirk in line weights and character faces. Imperfect circles. Slightly
   off-register fills (shapes a few pixels off their outlines) for sticker
   energy.
-- **Tiny expressive characters.** When we anthropomorphize a concept
-  (e.g., an atom, a photon, a neutron star), it's a little blob with
-  eyes and one expressive feature (shaky legs, a spike, a sweatbead).
-  No faces on actual humans — humans are silhouettes or hands only. Human
-  faces risk aging the brand fast.
+- **Sticker library, not bespoke characters.** When we need a visual
+  subject (an octopus, an atom, a router, a deck of cards), we pull from
+  a curated library — primary **OpenMoji** (~150 hand-picked entries
+  grouped by pillar), fallback **Font Awesome 6 Free** for abstract-tech
+  concepts (chip, wifi, server, lock). The library is finite and
+  bible-governed; the LLM picks a name, the renderer picks the asset.
+  We do **not** hand-author bespoke character art per video — the v1
+  channel ships at single-operator scale, and a finite sticker palette
+  is what makes the brand recognizable across hundreds of videos. See
+  the "Sticker Library" subsection below for picking rules.
+- **No human faces, ever.** OpenMoji includes faces, gestures, and
+  people; our curated registry **excludes** all of them. Humans appear
+  only as silhouettes or hands (open / pointing / scrawling). Faces age
+  the brand fast and trigger uncanny-valley reactions to AI-driven
+  content.
 - **Chaotic energy inside a tight grid.** Backgrounds are clean flat
   color. Foregrounds can explode with sticker-style labels, arrows, hand-
   drawn circles, scribbled underlines. The grid holds; the stickers break
@@ -510,6 +521,47 @@ in pink).
   Adam J Kurtz's lettering energy, the density of a _Oh No Ross and Carrie_
   merch table.
 
+### Sticker Library
+
+Two layers of curated assets, both bible-governed:
+
+1. **Primary: OpenMoji** (~150 entries, CC BY-SA 4.0, self-hosted in
+   `factory/public/openmoji/`). Sticker-pack aesthetic — chunky outlines,
+   flat fills, slightly hand-touched. Use for: animals, body parts (hands
+   only — no faces), food, weather, objects, plants, celestial bodies,
+   chemistry glyphs.
+2. **Fallback: Font Awesome 6 Free** (~30 hand-picked entries, CC BY 4.0).
+   Single-color line icons. Use for abstract-tech concepts where OpenMoji
+   is thin: chip, wifi, server, lock, code, database. Fallback icons
+   render in pillar accent color (Hazard Pink default).
+
+**The registry is finite.** Adding an icon to the registry is a
+bible-level decision — a freelancer cannot improvise an icon mid-render.
+New entries land via the same process as new pillars: founder review,
+registry PR, bible changelog bump. This is what makes the channel
+visually consistent across hundreds of videos.
+
+**Picking rules.**
+
+- One **hero icon** per beat, optional. Auto-positioned in the upper
+  third of the caption region, sized to ~25% of frame width (~270px on
+  1080w), rotated by `hashAngle(name, [-6, 6])`.
+- Zero or more **accent icons** per beat (Phase B), each anchored to a
+  single word, sized to ~5% of frame width (~50px), placed inline with
+  the caption pill.
+- **Hard cap: 3 icons per beat** (1 hero + 2 accents). More than that,
+  the frame stops being "tight grid + chaos stickers" and becomes noise.
+
+**Excluded from the registry.** All emoji depicting human faces, full
+bodies, skin tones, gender-coded gestures, or culture-specific symbols.
+We don't want viewers reading icon-as-emoji and projecting identity onto
+our channel — these are decorative graphics, not communicative emoji.
+
+**Attribution.** OpenMoji's CC BY-SA 4.0 requires attribution and
+share-alike on derivatives of the icons themselves. The brand site
+footer carries the attribution line. We do not modify the SVGs, so
+share-alike doesn't reach our render output.
+
 ### Motion Principles
 
 - **Cut on the word.** Motion matches the voice: fast, punchy, on-beat.
@@ -520,10 +572,34 @@ in pink).
 - **Frame holds max 1.2s.** If a frame doesn't change visually within a
   beat, we recut.
 - **Zoom > pan.** Punch-ins and whip cuts over slow pans.
-- **Sound design is part of motion.** Snaps, pops, one unhinged foley hit
-  per stinger. (Handled by editor; animator should leave room.)
+- **Sound design is part of motion.** See the "Sound Design" subsection
+  below — every cue verb has a default SFX, every Beat 4 has a stinger
+  hit. Animator leaves frame-accurate room; renderer handles the mix.
 - **No talking head, ever.** If a human appears, it's a silhouette or a
   hand drawing on a chalkboard — never a face.
+
+#### Sound Design
+
+Every video has a layered SFX kit, not just narration. The kit is
+curated royalty-free (CC0 / Mixkit), ≤300ms per file, served as static
+assets — no per-render generation in v1.
+
+**Cue → SFX defaults.** Each motion cue verb has one default SFX file:
+`slam` (wood-knock), `scale-bounce` (rubber), `zoom-punch` (low whoosh),
+`circle-mark` (marker squeak), `underline-scribble` (pencil),
+`x-out` (swipe + tap), `sticker-drop` (tape-rip), `whip-cut` (whoosh),
+`hero-sticker` (pop). The renderer triggers SFX at the same frame as
+the visual cue — sample-accurate sync because both derive from the same
+frame number.
+
+**Stinger SFX.** Beat 4 gets one bespoke "unhinged" foley hit per pillar.
+Five files total (one per pillar). Picked by pillar, not by cue.
+
+**Mixing rules.** Narration sits at full volume (`1.0`); SFX at `0.4–0.7`
+(per-verb table in `factory/src/lib/sfx/registry.ts`). No real-time
+ducking — if the mix muddies, the human tunes the table, not the renderer.
+Per-word color highlights are **silent** (firing every word would make a
+constant tick).
 
 #### Cue Verb Vocabulary
 
@@ -539,6 +615,7 @@ verbs that compositions can implement and prompts can teach:
 - **x-out** — pink X slams over a word, word fades to 50%. Use for the "X'd out" rejection pattern (e.g., "is it grandma? ✗").
 - **sticker-drop** — small sticker (arrow / exclamation / question) drops next to a word. Use sparingly; one per video max.
 - **whip-cut** — pill-level entrance with motion-blur, no scale or rotate. Use for the first pill of Beat 2 — the structural pivot.
+- **hero-sticker** — a single OpenMoji or Font Awesome icon (~25% of frame width) lands in the upper third of the caption region at beat-start. Slams in (scale 1.4→1.0, ±6° rotation by `hashAngle(name)`), idle-bobs at 0.5Hz translateY(±4px) during the beat to satisfy the "frame holds max 1.2s" rule, no exit. One per beat max. The LLM emits an icon name from the registry; the renderer auto-positions and sizes. Pillar identity reads from the caption pills below the icon, not from icon color (icons render full-color as published).
 
 Implementations may auto-derive most verbs from text content (ALL-CAPS,
 trailing punctuation, italic markdown). Hand-authored cues are reserved for
@@ -982,6 +1059,8 @@ Print these. Tape them to the monitor.
 - Posting cadence, platform mix, thumbnail experiments
 - Bio copy (A/B test freely)
 - Which sticker-pack color maps to which pillar (if data shows better pairings)
+- Sticker library entries (the curated OpenMoji + Font Awesome registries can grow or shrink with founder approval; license + "no human faces" rule stays locked)
+- SFX kit volumes and per-cue file assignments (table can be tuned without a brief revision; the "narration full volume + SFX 0.4–0.7" envelope stays locked)
 
 ### How the Brand Evolves
 
@@ -1032,10 +1111,20 @@ If all 15 pass: ship it.
 - **One-line identity:** "STEM explained like you're 5. the science is still
   for grown-ups."
 
-**Owner:** Steve Harmeyer · **Version:** 1.3 · **Last updated:** 2026-04-25
+**Owner:** Steve Harmeyer · **Version:** 1.4 · **Last updated:** 2026-04-25
 
 ## Changelog
 
+- **v1.4 (2026-04-25)** — Sticker Library + Sound Design. Replaced the
+  "tiny expressive characters with eyes" art-direction promise with a
+  finite, bible-governed sticker library: OpenMoji primary
+  (~150 entries, CC BY-SA 4.0), Font Awesome 6 Free fallback
+  (~30 entries, CC BY 4.0). Added Cue Verb #9: `hero-sticker`.
+  Expanded the motion principles' one-line sound-design note into a
+  full Sound Design subsection with cue → SFX defaults, per-pillar
+  stinger SFX, and mixing rules. §7 Flexible list now includes
+  sticker library entries + SFX kit (license + "no human faces" rule
+  remain locked).
 - **v1.3 (2026-04-25)** — Frame grammar + cue DSL. Added Frame Anatomy
   (top 14% chrome / center 64% caption / bottom 22% safe-zone) with the
   Hazard Pink invariant. Added the Cue Verb Vocabulary (eight named
